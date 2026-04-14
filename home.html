@@ -1,0 +1,748 @@
+<style>
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #0A0A0A !important;
+}
+</style>
+<!--
+BROKEN ALCHEMIST — HOME FUNNEL
+Squarespace usage:
+1) Create a blank page and add a Code Block.
+2) Paste everything in this file into that Code Block.
+3) Replace the webhook URL placeholders in the <script>.
+4) Optional: replace the Nexus CTA URLs.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<section class="tba-funnel" id="tbaFunnel" data-step="landing">
+  <div class="tba-bg"></div>
+  <div class="tba-grain"></div>
+
+  <div class="tba-shell">
+    <!-- STEP 1 -->
+    <section class="tba-step is-active" data-step="landing" aria-labelledby="tba-landing-title">
+      <div class="tba-inner tba-center">
+        <div class="tba-copy">
+          <p class="tba-kicker">THE BROKEN ALCHEMIST</p>
+          <h1 id="tba-landing-title" class="tba-title">You already know something’s off.</h1>
+          <p class="tba-subtitle">You just haven’t named it correctly.</p>
+        </div>
+
+        <div class="tba-actions tba-actions-stack">
+          <button class="tba-btn tba-btn-ghost" data-path="identity" type="button">
+            I want to understand myself
+          </button>
+          <button class="tba-btn tba-btn-ghost" data-path="pain" type="button">
+            I want to fix something now
+          </button>
+        </div>
+
+        <div class="tba-escape">
+          <a href="/identity">Not ready yet</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="tba-step" data-step="input" aria-labelledby="tba-input-title" hidden>
+      <div class="tba-inner">
+        <div class="tba-copy">
+          <p class="tba-kicker tba-kicker-dim">STEP 1</p>
+          <h2 id="tba-input-title" class="tba-title tba-title-md">What’s the one thing you can’t seem to control?</h2>
+          <p class="tba-subtitle tba-subtitle-sm">Answer directly.</p>
+        </div>
+
+        <form id="tbaInputForm" class="tba-form" novalidate>
+          <label class="tba-label sr-only" for="tbaProblem">Your answer</label>
+          <textarea id="tbaProblem" name="problem" class="tba-input tba-textarea" rows="3" maxlength="280" required placeholder="Type it here..."></textarea>
+          <div class="tba-form-footer">
+            <p class="tba-counter"><span id="tbaCounter">0</span>/280</p>
+            <button id="tbaInputSubmit" class="tba-btn tba-btn-primary" type="submit" disabled>Continue</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- STEP 2.5 -->
+    <section class="tba-step" data-step="micro" aria-live="polite" hidden>
+      <div class="tba-inner tba-center">
+        <div class="tba-copy">
+          <p class="tba-kicker tba-kicker-dim">LOOK AGAIN</p>
+          <h2 id="tbaMicroLine" class="tba-title tba-title-md"></h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="tba-step" data-step="email" aria-labelledby="tba-email-title" hidden>
+      <div class="tba-inner">
+        <div class="tba-copy">
+          <p class="tba-kicker tba-kicker-dim">STEP 2</p>
+          <h2 id="tba-email-title" class="tba-title tba-title-md">I’ll show you exactly what’s happening.<br>Where should I send it?</h2>
+          <p class="tba-subtitle tba-subtitle-sm">No value before commitment.</p>
+        </div>
+
+        <form id="tbaEmailForm" class="tba-form" novalidate>
+          <label class="tba-label sr-only" for="tbaEmail">Email address</label>
+          <input id="tbaEmail" name="email" class="tba-input" type="email" inputmode="email" autocomplete="email" required placeholder="you@example.com">
+          <div class="tba-form-footer">
+            <p id="tbaEmailStatus" class="tba-status" aria-live="polite"></p>
+            <button id="tbaEmailSubmit" class="tba-btn tba-btn-primary" type="submit">Show me</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="tba-step" data-step="value" aria-labelledby="tba-value-title" hidden>
+      <div class="tba-inner tba-inner-wide">
+        <div class="tba-value-wrap">
+          <div class="tba-copy">
+            <p class="tba-kicker">THE PATTERN</p>
+            <h2 id="tba-value-title" class="tba-title tba-title-md" data-slot="interpretation"></h2>
+          </div>
+
+          <!-- Video placeholder. Hidden by default. -->
+          <div id="tbaVideoWrap" class="tba-video" hidden>
+            <div class="tba-video-ratio">
+              <!-- Replace src with your hosted embed URL when ready -->
+              <iframe id="tbaVideoFrame" src="" title="Broken Alchemist video" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <!-- Text fallback -->
+          <div id="tbaTextValue" class="tba-panels">
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHAT’S ACTUALLY HAPPENING</p>
+              <p id="tbaPatternText" class="tba-panel-text"></p>
+            </article>
+
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHY YOU CAN’T STOP IT</p>
+              <p id="tbaMechanismText" class="tba-panel-text"></p>
+            </article>
+
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHAT PEOPLE GET WRONG</p>
+              <p id="tbaReframeText" class="tba-panel-text"></p>
+            </article>
+
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHERE THIS GETS SOLVED</p>
+              <p id="tbaBridgeText" class="tba-panel-text"></p>
+            </article>
+          </div>
+
+          <div class="tba-reinforcement" id="tbaReinforcement"></div>
+
+          <div class="tba-cta-wrap">
+            <a id="tbaPrimaryCta" class="tba-btn tba-btn-solid" href="/nexus">Step inside</a>
+            <a id="tbaSecondaryCta" class="tba-link" href="/identity">See it clearly <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<style>
+  .tba-funnel, .tba-funnel * { box-sizing: border-box; }
+  .tba-funnel {
+    --bg: #0A0A0A;
+    --bg2: #101010;
+    --fg: #FFFFFF;
+    --muted: #A1A1AA;
+    --line: #242424;
+    --line-strong: #3A3A3A;
+    --panel: rgba(255,255,255,0.03);
+    --panel-strong: rgba(255,255,255,0.05);
+    --accent: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .tba-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 50% 20%, rgba(255,255,255,0.05), transparent 35%),
+      linear-gradient(180deg, rgba(255,255,255,0.015), transparent 30%),
+      linear-gradient(135deg, #0A0A0A 0%, #0B0B0B 45%, #111111 100%);
+    pointer-events: none;
+  }
+
+  .tba-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.2) 0.6px, transparent 0.6px);
+    background-size: 8px 8px;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+
+  .tba-shell {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: block;
+  }
+
+  .tba-step {
+    min-height: 100vh;
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  .tba-step.is-active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tba-step[hidden] { display: none !important; }
+
+  .tba-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .tba-inner-wide {
+    max-width: 860px;
+  }
+
+  .tba-center {
+    align-items: center;
+    text-align: center;
+  }
+
+  .tba-copy {
+    display: grid;
+    gap: 10px;
+  }
+
+  .tba-kicker {
+    margin: 0;
+    color: rgba(255,255,255,0.72);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .tba-kicker-dim { color: rgba(255,255,255,0.45); }
+
+  .tba-title {
+    margin: 0;
+    font-size: clamp(44px, 7vw, 72px);
+    line-height: 1.02;
+    letter-spacing: -0.055em;
+    font-weight: 800;
+    max-width: 12ch;
+  }
+
+  .tba-title-md {
+    font-size: clamp(34px, 5vw, 48px);
+    max-width: 15ch;
+  }
+
+  .tba-subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(17px, 2vw, 19px);
+    line-height: 1.3;
+    max-width: 38ch;
+  }
+
+  .tba-subtitle-sm {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .tba-actions {
+    width: 100%;
+    max-width: 560px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .tba-actions-stack {
+    margin-top: 12px;
+  }
+
+  .tba-btn, .tba-link, .tba-input, .tba-textarea {
+    font-family: inherit;
+  }
+
+  .tba-btn {
+    appearance: none;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--fg);
+    text-decoration: none;
+    border-radius: 18px;
+    padding: 16px 18px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 56px;
+    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, opacity 180ms ease;
+    cursor: pointer;
+  }
+
+  .tba-btn:hover { transform: translateY(-1px); }
+  .tba-btn:focus-visible, .tba-link:focus-visible, .tba-input:focus-visible, .tba-textarea:focus-visible {
+    outline: 2px solid #FFFFFF;
+    outline-offset: 2px;
+  }
+
+  .tba-btn-ghost {
+    background: rgba(255,255,255,0.02);
+    border-color: var(--line);
+  }
+
+  .tba-btn-ghost:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: var(--line-strong);
+  }
+
+  .tba-btn-primary {
+    border-color: #FFFFFF;
+    background: #FFFFFF;
+    color: #000000;
+    min-width: 140px;
+  }
+
+  .tba-btn-primary:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .tba-btn-solid {
+    border-color: #FFFFFF;
+    background: #FFFFFF;
+    color: #000000;
+    min-width: 180px;
+  }
+
+  .tba-form {
+    display: grid;
+    gap: 16px;
+  }
+
+  .tba-input, .tba-textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.03);
+    color: var(--fg);
+    border-radius: 18px;
+    padding: 18px 18px;
+    font-size: 16px;
+    line-height: 1.35;
+    transition: border-color 180ms ease, background-color 180ms ease;
+  }
+
+  .tba-input::placeholder, .tba-textarea::placeholder {
+    color: rgba(255,255,255,0.32);
+  }
+
+  .tba-input:focus, .tba-textarea:focus {
+    border-color: #4A4A4A;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .tba-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .tba-form-footer {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .tba-counter,
+  .tba-status {
+    margin: 0;
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+  }
+
+  .tba-status.is-error { color: #fca5a5; }
+  .tba-status.is-success { color: #bbf7d0; }
+
+  .tba-escape {
+    margin-top: 12px;
+  }
+
+  .tba-escape a {
+    color: rgba(255,255,255,0.14);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 180ms ease;
+  }
+
+  .tba-escape a:hover { color: rgba(255,255,255,0.22); }
+
+  .tba-value-wrap {
+    display: grid;
+    gap: 22px;
+    padding: 28px 0;
+  }
+
+  .tba-video {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .tba-video-ratio {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+
+  .tba-video-ratio iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .tba-panels {
+    display: grid;
+    gap: 14px;
+  }
+
+  .tba-panel {
+    background: var(--panel);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  .tba-panel-label {
+    margin: 0 0 8px;
+    color: rgba(255,255,255,0.52);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .tba-panel-text {
+    margin: 0;
+    color: #EFEFEF;
+    font-size: 17px;
+    line-height: 1.42;
+  }
+
+  .tba-reinforcement {
+    background: var(--panel-strong);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 22px;
+    padding: 18px 20px;
+    font-size: clamp(18px, 2.3vw, 24px);
+    font-weight: 700;
+    line-height: 1.16;
+    letter-spacing: -0.03em;
+  }
+
+  .tba-cta-wrap {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .tba-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 0.84;
+    transition: opacity 180ms ease;
+  }
+
+  .tba-link:hover { opacity: 1; }
+
+  .sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+
+  @media (max-width: 767px) {
+    .tba-inner {
+      padding: 24px 18px;
+      gap: 20px;
+    }
+    .tba-title {
+      letter-spacing: -0.05em;
+    }
+    .tba-form-footer,
+    .tba-cta-wrap {
+      align-items: stretch;
+      flex-direction: column;
+    }
+    .tba-btn-primary, .tba-btn-solid {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  const CONFIG = {
+    // Replace with your actual endpoint.
+    // This can be:
+    // 1) A custom serverless endpoint you control
+    // 2) A Zapier webhook that forwards to Kit
+    // 3) A Make.com webhook that forwards to Kit
+    webhookUrl: 'https://YOUR-WEBHOOK-ENDPOINT-HERE',
+    // Where the main conversion button should go.
+    nexusUrl: '/nexus',
+    // Optional route overrides.
+    deepRoutes: {
+      pain: '/pain',
+      identity: '/identity'
+    },
+    // Optional video URLs. Leave blank to use text.
+    videoEmbed: {
+      pain: '',
+      identity: ''
+    }
+  };
+
+  const COPY = {
+    micro: {
+      pain: 'This isn’t lack of control. This is reinforcement.',
+      identity: 'You’re not confused. You’re fragmented.'
+    },
+    interpretation: {
+      pain: 'You’re not failing to stop. You were never shown how.',
+      identity: 'You don’t lack identity. You lack structure.'
+    },
+    pattern: {
+      pain: 'What keeps repeating is not random. It is a learned loop: trigger, relief attempt, consequence, regret, repeat. The pattern survives because it still produces something your system mistakes for control.',
+      identity: 'You are not looking at a stable self. You are looking at an adaptive structure built to manage perception, pressure, and contradiction. It feels like confusion because the system keeps shifting around the wound.'
+    },
+    mechanism: {
+      pain: 'You do not break the cycle by wanting harder. You stay inside it because the pattern solves an immediate problem faster than your conscious mind can regulate it. Speed beats insight when the system is under pressure.',
+      identity: 'Insight alone does not resolve fragmentation. The system protects itself by changing posture, not by becoming coherent. You keep experiencing different versions of yourself because each version was built for a different threat.'
+    },
+    reframe: {
+      pain: 'Most people call this weakness, laziness, or lack of discipline. That is shallow. The real issue is structural: the pattern is still useful enough to survive. Until that is named correctly, nothing changes for long.',
+      identity: 'Most people think identity work means self-expression. That is too soft and too late. The problem is not expression. The problem is that the architecture underneath is unstable, so every insight collapses into another performance or retreat.'
+    },
+    bridge: {
+      pain: 'Nexus is where the pattern gets broken on purpose. Not through vague encouragement. Through structure, language, and pressure applied correctly.',
+      identity: 'Nexus is where fragmentation stops masquerading as depth. The work is structure, precision, and honest confrontation with what was built and why.'
+    },
+    reinforcement: {
+      pain: 'This isn’t random. It’s consistent—and predictable.',
+      identity: 'This isn’t who you are. It’s what you’ve built.'
+    }
+  };
+
+  const state = {
+    path: null,
+    response: '',
+    email: ''
+  };
+
+  const steps = {
+    landing: document.querySelector('.tba-step[data-step="landing"]'),
+    input: document.querySelector('.tba-step[data-step="input"]'),
+    micro: document.querySelector('.tba-step[data-step="micro"]'),
+    email: document.querySelector('.tba-step[data-step="email"]'),
+    value: document.querySelector('.tba-step[data-step="value"]')
+  };
+
+  const root = document.getElementById('tbaFunnel');
+  const pathButtons = Array.from(document.querySelectorAll('[data-path]'));
+  const inputForm = document.getElementById('tbaInputForm');
+  const problemField = document.getElementById('tbaProblem');
+  const inputSubmit = document.getElementById('tbaInputSubmit');
+  const counter = document.getElementById('tbaCounter');
+  const microLine = document.getElementById('tbaMicroLine');
+  const emailForm = document.getElementById('tbaEmailForm');
+  const emailField = document.getElementById('tbaEmail');
+  const emailSubmit = document.getElementById('tbaEmailSubmit');
+  const emailStatus = document.getElementById('tbaEmailStatus');
+  const valueTitle = document.querySelector('[data-slot="interpretation"]');
+  const patternText = document.getElementById('tbaPatternText');
+  const mechanismText = document.getElementById('tbaMechanismText');
+  const reframeText = document.getElementById('tbaReframeText');
+  const bridgeText = document.getElementById('tbaBridgeText');
+  const reinforcement = document.getElementById('tbaReinforcement');
+  const primaryCta = document.getElementById('tbaPrimaryCta');
+  const secondaryCta = document.getElementById('tbaSecondaryCta');
+  const videoWrap = document.getElementById('tbaVideoWrap');
+  const videoFrame = document.getElementById('tbaVideoFrame');
+  const textValue = document.getElementById('tbaTextValue');
+
+  function setActiveStep(name) {
+    Object.entries(steps).forEach(([key, el]) => {
+      if (!el) return;
+      const active = key === name;
+      if (active) {
+        el.hidden = false;
+        requestAnimationFrame(() => el.classList.add('is-active'));
+      } else {
+        el.classList.remove('is-active');
+        setTimeout(() => {
+          if (!el.classList.contains('is-active')) el.hidden = true;
+        }, 220);
+      }
+    });
+    root.dataset.step = name;
+    window.scrollTo({ top: root.offsetTop, behavior: 'smooth' });
+  }
+
+  function updateCounter() {
+    const len = problemField.value.trim().length;
+    counter.textContent = String(len);
+    inputSubmit.disabled = len === 0;
+  }
+
+  function hydrateValue() {
+    const path = state.path;
+    valueTitle.textContent = COPY.interpretation[path];
+    patternText.textContent = COPY.pattern[path];
+    mechanismText.textContent = COPY.mechanism[path];
+    reframeText.textContent = COPY.reframe[path];
+    bridgeText.textContent = COPY.bridge[path];
+    reinforcement.textContent = COPY.reinforcement[path];
+    primaryCta.href = CONFIG.nexusUrl;
+    secondaryCta.href = CONFIG.deepRoutes[path] || '/identity';
+
+    const embedUrl = CONFIG.videoEmbed[path];
+    if (embedUrl && embedUrl.trim()) {
+      videoFrame.src = embedUrl.trim();
+      videoWrap.hidden = false;
+      textValue.hidden = true;
+    } else {
+      videoFrame.src = '';
+      videoWrap.hidden = true;
+      textValue.hidden = false;
+    }
+  }
+
+  async function sendLead(payload) {
+    if (!CONFIG.webhookUrl || CONFIG.webhookUrl.includes('YOUR-WEBHOOK-ENDPOINT-HERE')) {
+      throw new Error('Webhook URL is not configured.');
+    }
+
+    const res = await fetch(CONFIG.webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      throw new Error('Webhook request failed.');
+    }
+
+    return res;
+  }
+
+  pathButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.path = btn.dataset.path;
+      setActiveStep('input');
+      setTimeout(() => problemField.focus(), 200);
+    });
+  });
+
+  problemField.addEventListener('input', updateCounter);
+
+  inputForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const value = problemField.value.trim();
+    if (!value) return;
+
+    state.response = value;
+    microLine.textContent = COPY.micro[state.path];
+    setActiveStep('micro');
+
+    setTimeout(() => {
+      setActiveStep('email');
+      emailField.focus();
+    }, 1200);
+  });
+
+  emailForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    emailStatus.textContent = '';
+    emailStatus.className = 'tba-status';
+
+    const email = emailField.value.trim();
+    if (!email) return;
+
+    state.email = email;
+    emailSubmit.disabled = true;
+    emailSubmit.textContent = 'Sending...';
+
+    const payload = {
+      email: state.email,
+      path: state.path,
+      response: state.response,
+      timestamp: new Date().toISOString(),
+      source: 'the-broken-alchemist-home'
+    };
+
+    try {
+      await sendLead(payload);
+      emailStatus.textContent = 'Locked in.';
+      emailStatus.classList.add('is-success');
+      hydrateValue();
+      setTimeout(() => {
+        setActiveStep('value');
+      }, 220);
+    } catch (err) {
+      emailStatus.textContent = 'Submission failed. Check your webhook and try again.';
+      emailStatus.classList.add('is-error');
+      console.error(err);
+    } finally {
+      emailSubmit.disabled = false;
+      emailSubmit.textContent = 'Show me';
+    }
+  });
+
+  updateCounter();
+  primaryCta.href = CONFIG.nexusUrl;
+})();
+</script>
