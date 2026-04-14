@@ -1,0 +1,177 @@
+<div id="tba-root">
+<style>
+/* Kill ALL Squarespace spacing */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Force our container to ignore Squarespace layout */
+#tba-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0A0A0A;
+  z-index: 999999;
+  overflow: auto;
+}
+
+/* Ensure funnel fills container */
+.tba-funnel {
+  min-height: 100%;
+}
+
+/* Hide header/footer safely */
+header, footer {
+  display: none !important;
+}
+</style>
+<!--
+BROKEN ALCHEMIST — /library PAGE
+Use this on a blank Squarespace page in a Code Block.
+
+Purpose:
+- Authority layer (post-capture or deep link)
+- Blog + content library
+- Keeps tone aligned (no soft content)
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<section class="tba-lib">
+  <div class="tba-lib-bg"></div>
+
+  <div class="tba-lib-shell">
+    <div class="tba-lib-inner">
+
+      <!-- HEADER -->
+      <div class="tba-lib-header">
+        <p class="tba-lib-kicker">THE BROKEN ALCHEMIST</p>
+        <h1 class="tba-lib-title">You’re not here to browse.</h1>
+        <p class="tba-lib-sub">You’re here because something keeps repeating.</p>
+      </div>
+
+      <!-- FILTER / NAV -->
+      <div class="tba-lib-filter">
+        <button class="tba-lib-filter-btn active" data-filter="all">All</button>
+        <button class="tba-lib-filter-btn" data-filter="pain">Pain</button>
+        <button class="tba-lib-filter-btn" data-filter="identity">Identity</button>
+        <button class="tba-lib-filter-btn" data-filter="trauma">Trauma</button>
+      </div>
+
+      <!-- CONTENT GRID -->
+      <div class="tba-lib-grid" id="tbaLibGrid">
+
+        <!-- CARD -->
+        <article class="tba-lib-card" data-category="pain">
+          <p class="tba-lib-card-label">PATTERN</p>
+          <h3 class="tba-lib-card-title">Breaking Self-Destructive Patterns</h3>
+          <p class="tba-lib-card-text">You don’t repeat patterns because you’re weak. You repeat them because they still solve something.</p>
+          <a href="#" class="tba-lib-card-link">Read →</a>
+        </article>
+
+        <article class="tba-lib-card" data-category="identity">
+          <p class="tba-lib-card-label">IDENTITY</p>
+          <h3 class="tba-lib-card-title">Why You Don’t Feel Like Yourself</h3>
+          <p class="tba-lib-card-text">You’re not lost. You’re switching between versions built for different environments.</p>
+          <a href="#" class="tba-lib-card-link">Read →</a>
+        </article>
+
+        <article class="tba-lib-card" data-category="trauma">
+          <p class="tba-lib-card-label">TRAUMA</p>
+          <h3 class="tba-lib-card-title">Why Your Brain Won’t Let Go</h3>
+          <p class="tba-lib-card-text">Unresolved loops aren’t emotional. They’re neurological systems still waiting for closure.</p>
+          <a href="#" class="tba-lib-card-link">Read →</a>
+        </article>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="tba-lib-cta">
+        <h2>You’ve seen enough.</h2>
+        <a href="/nexus" class="tba-lib-btn">Step inside</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.tba-lib, .tba-lib * { box-sizing: border-box; }
+.tba-lib {
+  background: #0A0A0A;
+  color: #FFF;
+  font-family: 'Manrope', sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+.tba-lib-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 10%, rgba(255,255,255,0.05), transparent 30%);
+}
+.tba-lib-shell { position: relative; z-index: 1; padding: 40px 24px; }
+.tba-lib-inner { max-width: 900px; margin: auto; display: grid; gap: 24px; }
+
+.tba-lib-kicker { font-size: 12px; letter-spacing: .2em; opacity: .6; }
+.tba-lib-title { font-size: 56px; margin: 0; }
+.tba-lib-sub { color: #aaa; }
+
+.tba-lib-filter { display: flex; gap: 10px; flex-wrap: wrap; }
+.tba-lib-filter-btn {
+  background: transparent;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.tba-lib-filter-btn.active { background: #fff; color: #000; }
+
+.tba-lib-grid { display: grid; gap: 14px; }
+
+.tba-lib-card {
+  border: 1px solid #222;
+  padding: 18px;
+  background: rgba(255,255,255,0.03);
+}
+.tba-lib-card-label { font-size: 11px; letter-spacing: .15em; opacity: .5; }
+.tba-lib-card-title { margin: 6px 0; font-size: 22px; }
+.tba-lib-card-text { color: #ccc; }
+.tba-lib-card-link { color: #fff; text-decoration: none; }
+
+.tba-lib-cta { text-align: center; margin-top: 40px; }
+.tba-lib-btn {
+  background: #fff;
+  color: #000;
+  padding: 14px 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+</style>
+
+<script>
+const buttons = document.querySelectorAll('.tba-lib-filter-btn');
+const cards = document.querySelectorAll('.tba-lib-card');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</div>
