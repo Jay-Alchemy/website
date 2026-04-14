@@ -1,8 +1,31 @@
+<div id="tba-root">
 <style>
+/* Kill ALL Squarespace spacing */
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  background: #0A0A0A !important;
+}
+
+/* Force our container to ignore Squarespace layout */
+#tba-root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0A0A0A;
+  z-index: 999999;
+  overflow: auto;
+}
+
+/* Ensure funnel fills container */
+.tba-funnel {
+  min-height: 100%;
+}
+
+/* Hide header/footer safely */
+header, footer {
+  display: none !important;
 }
 </style>
 <!--
@@ -746,3 +769,4 @@ Squarespace usage:
   primaryCta.href = CONFIG.nexusUrl;
 })();
 </script>
+</div>
