@@ -1,182 +1,211 @@
 <div id="tba-root">
-  <style>
-/* Kill ALL Squarespace spacing */
-html, body {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Force our container to ignore Squarespace layout */
+<style>
+html, body { margin: 0 !important; padding: 0 !important; }
 #tba-root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #0A0A0A;
-  z-index: 999999;
-  overflow: auto;
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: #080808; z-index: 999999; overflow: auto;
 }
-
-/* Ensure funnel fills container */
-.tba-funnel {
-  min-height: 100%;
-}
-
-/* Hide header/footer safely */
-header, footer {
-  display: none !important;
-}
+header, footer, .header, .footer-blocks { display: none !important; }
 </style>
+
 <!--
-BROKEN ALCHEMIST — /identity PAGE
-Use this on a blank Squarespace page in a Code Block.
+BROKEN ALCHEMIST — /identity DEEP PAGE (v2)
+Squarespace: Blank page → Code Block → Paste.
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif&display=swap" rel="stylesheet">
 
 <section class="tba-deep">
-  <div class="tba-deep-bg"></div>
+  <div class="tba-deep-atmo"></div>
   <div class="tba-deep-shell">
     <div class="tba-deep-inner">
-      <p class="tba-deep-kicker">THE BROKEN ALCHEMIST / IDENTITY</p>
-      <h1 class="tba-deep-title">You are not “finding yourself.” You are sorting through what got built.</h1>
-      <p class="tba-deep-sub">That is why clarity keeps collapsing back into contradiction.</p>
 
-      <div class="tba-deep-grid">
+      <p class="tba-deep-eyebrow">THE BROKEN ALCHEMIST / IDENTITY</p>
+
+      <h1 class="tba-deep-h1">You are not "finding yourself." You are sorting through what got built to protect you.</h1>
+
+      <p class="tba-deep-lead">That is why clarity keeps collapsing. You are not confused — you are running multiple operating systems that were each designed for a different version of danger.</p>
+
+      <div class="tba-deep-cards">
+
         <article class="tba-deep-card">
           <p class="tba-deep-label">FRAGMENTATION</p>
-          <p>What feels like depth is often inconsistency under pressure. Different rooms, different people, different needs—and suddenly a different self appears. That is not mystery. That is adaptation hardened into identity.</p>
+          <p class="tba-deep-body">Different rooms produce different people. Different relationships produce different voices. This is not complexity — it is an adaptive system cycling through the versions it built to manage perception, pressure, and the threat of exposure. Each version solves a problem. None of them can hold the full weight of a single honest moment.</p>
         </article>
 
         <article class="tba-deep-card">
-          <p class="tba-deep-label">FALSE SELF CONSTRUCTION</p>
-          <p>You built versions of yourself to survive exposure, rejection, demand, and shame. Some of them are charming. Some are controlled. Some are invisible. The problem is not that they exist. The problem is that none of them can hold the whole weight.</p>
+          <p class="tba-deep-label">THE FALSE SELF ARCHITECTURE</p>
+          <p class="tba-deep-body">You did not choose these versions. They were constructed under duress — shaped by what was punished, what was rewarded, what had to be hidden, and what had to be performed. Some of them are competent. Some are charming. Some are invisible. The problem is not that they exist. The problem is that the switchboard running them operates below the level of your awareness, and it optimizes for safety, not coherence.</p>
         </article>
 
         <article class="tba-deep-card">
-          <p class="tba-deep-label">WHY INSIGHT FAILS</p>
-          <p>You can understand yourself and still remain structurally unchanged. Insight is not governance. Naming a pattern is not the same as reorganizing the system that keeps producing it.</p>
+          <p class="tba-deep-label">WHY INSIGHT KEEPS FAILING</p>
+          <p class="tba-deep-body">You can describe every version of yourself in precise language and still watch the system override you the moment pressure arrives. Insight is observation, not governance. Naming a pattern does not reorganize the nervous system that keeps producing it. This is why therapy can feel productive and life can feel unchanged — understanding and structural change operate on different timelines.</p>
         </article>
 
         <article class="tba-deep-card">
+          <p class="tba-deep-label">WHAT ACTUALLY HOLDS</p>
+          <p class="tba-deep-body">The versions do not need to be destroyed. They need to be governed. That means building an internal structure that does not collapse when the environment shifts — one that can hold contradiction, absorb pressure, and maintain a coherent position without performing. That is not self-discovery. That is engineering.</p>
+        </article>
+
+        <article class="tba-deep-card tba-deep-card--bridge">
           <p class="tba-deep-label">THE BRIDGE</p>
-          <p>Nexus is where clarity stops being aesthetic and starts becoming usable. Structure, language, confrontation, and live pressure—enough to expose what was built and begin governing it deliberately.</p>
+          <p class="tba-deep-body">Nexus is where fragmentation stops masquerading as depth. The work is structural — precise language, honest confrontation, and sustained pressure applied in a room where no one is interested in your performance. You do not leave with a new identity. You leave with a system that can hold the one you actually have.</p>
         </article>
+
       </div>
 
       <div class="tba-deep-cta">
-        <a class="tba-deep-btn" href="/nexus">See it clearly</a>
-        <a class="tba-deep-link" href="/">Start over <span aria-hidden="true">→</span></a>
+        <a class="tba-deep-btn" href="/nexus">Enter Nexus</a>
+        <a class="tba-deep-link" href="/">Start from the beginning <span aria-hidden="true">→</span></a>
       </div>
+
     </div>
   </div>
 </section>
 
 <style>
-  .tba-deep, .tba-deep * { box-sizing: border-box; }
+  .tba-deep, .tba-deep * { box-sizing: border-box; margin: 0; padding: 0; }
+
   .tba-deep {
-    background: #0A0A0A;
-    color: #FFFFFF;
-    font-family: 'Manrope', sans-serif;
+    --bg: #080808;
+    --fg: #F5F5F5;
+    --muted: #8A8A96;
+    --dim: rgba(255,255,255,0.38);
+    --border: rgba(255,255,255,0.08);
+    --surface: rgba(255,255,255,0.025);
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --radius: 16px;
+
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
     position: relative;
-    overflow: hidden;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
-  .tba-deep-bg {
-    position: absolute;
-    inset: 0;
+
+  .tba-deep-atmo {
+    position: absolute; inset: 0; pointer-events: none;
     background:
-      radial-gradient(circle at 50% 10%, rgba(255,255,255,0.05), transparent 32%),
-      linear-gradient(180deg, rgba(255,255,255,0.02), transparent 30%),
-      linear-gradient(135deg, #090909 0%, #101010 100%);
-    opacity: 1;
+      radial-gradient(ellipse 60% 40% at 50% 5%, rgba(255,255,255,0.035), transparent),
+      radial-gradient(ellipse 30% 50% at 90% 90%, rgba(255,255,255,0.012), transparent);
   }
+
   .tba-deep-shell {
-    position: relative;
-    z-index: 1;
-    padding: 40px 24px;
+    position: relative; z-index: 1;
+    padding: 56px 24px 64px;
   }
+
   .tba-deep-inner {
-    max-width: 880px;
+    max-width: 780px;
     margin: 0 auto;
     display: grid;
-    gap: 22px;
+    gap: 28px;
   }
-  .tba-deep-kicker {
-    margin: 0;
-    color: rgba(255,255,255,0.65);
-    font-size: 12px;
+
+  .tba-deep-eyebrow {
+    color: var(--muted);
+    font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     font-weight: 700;
   }
-  .tba-deep-title {
-    margin: 0;
-    font-size: clamp(40px, 6vw, 70px);
-    line-height: 1.02;
-    letter-spacing: -0.055em;
-    max-width: 12ch;
+
+  .tba-deep-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    max-width: 16ch;
   }
-  .tba-deep-sub {
-    margin: 0;
-    color: #A1A1AA;
-    font-size: 18px;
-    line-height: 1.3;
+
+  .tba-deep-lead {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 56ch;
   }
-  .tba-deep-grid {
+
+  .tba-deep-cards {
     display: grid;
-    gap: 14px;
-    margin-top: 8px;
+    gap: 12px;
+    margin-top: 4px;
   }
+
   .tba-deep-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 22px;
-    padding: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    display: grid;
+    gap: 10px;
   }
+
+  .tba-deep-card--bridge {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+  }
+
   .tba-deep-label {
-    margin: 0 0 8px;
-    color: rgba(255,255,255,0.52);
-    font-size: 11px;
+    color: var(--dim);
+    font-size: 10px;
     letter-spacing: 0.18em;
     font-weight: 700;
     text-transform: uppercase;
   }
-  .tba-deep-card p:last-child {
-    margin: 0;
-    font-size: 17px;
-    line-height: 1.42;
-    color: #EFEFEF;
+
+  .tba-deep-body {
+    color: rgba(255,255,255,0.88);
+    font-size: 16px;
+    line-height: 1.6;
   }
+
   .tba-deep-cta {
     display: flex;
-    gap: 16px;
+    gap: 18px;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 6px;
+    margin-top: 8px;
   }
+
   .tba-deep-btn {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 56px;
-    padding: 16px 20px;
-    border-radius: 18px;
-    background: #FFFFFF;
-    color: #000000;
+    align-items: center; justify-content: center;
+    min-height: 52px;
+    padding: 14px 24px;
+    border-radius: 12px;
+    background: var(--fg);
+    color: var(--bg);
     text-decoration: none;
+    font-family: var(--font-body);
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 600;
+    transition: transform 160ms;
   }
+  .tba-deep-btn:hover { transform: translateY(-1px); }
+  .tba-deep-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+
   .tba-deep-link {
-    color: #FFFFFF;
+    color: var(--fg);
     text-decoration: none;
     font-size: 15px;
-    font-weight: 700;
-    opacity: 0.84;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 200ms;
+  }
+  .tba-deep-link:hover { opacity: 1; }
+
+  @media (max-width: 640px) {
+    .tba-deep-shell { padding: 36px 18px 48px; }
+    .tba-deep-cta { flex-direction: column; align-items: stretch; }
+    .tba-deep-btn { width: 100%; }
+    .tba-deep-link { text-align: center; }
   }
 </style>
 </div>
