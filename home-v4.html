@@ -1,0 +1,926 @@
+<div id="tba-root">
+
+<!--
+  BROKEN ALCHEMIST — HOME FUNNEL (v4)
+  Enhanced: grain texture, micro-interactions, typewriter reframe,
+  progress dots, panel stagger, form glow, button shimmer.
+  Squarespace: aggressive color overrides, inline event handlers.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif&display=swap" rel="stylesheet">
+
+<section class="tba" id="tbaFunnel" data-step="landing">
+  <div class="tba-atmosphere"></div>
+
+  <div class="tba-shell">
+
+    <!-- STEP 1 HOOK -->
+    <section class="tba-step is-active" data-step="landing" id="stepLanding">
+      <div class="tba-frame tba-frame--center">
+        <p class="tba-eyebrow">THE BROKEN ALCHEMIST</p>
+        <h1 class="tba-h1">You keep solving the wrong problem.</h1>
+        <p class="tba-lead">The pattern is not what you think it is. And the thing you built to survive it is now the thing running your life.</p>
+
+        <div class="tba-path-group">
+          <button class="tba-path-btn" type="button" onclick="TBA.selectPath('identity', this)">
+            <span class="tba-path-label">I don't know who I actually am</span>
+            <span class="tba-path-hint">IDENTITY FRAGMENTATION</span>
+          </button>
+          <button class="tba-path-btn" type="button" onclick="TBA.selectPath('pain', this)">
+            <span class="tba-path-label">I keep doing the thing I said I'd stop</span>
+            <span class="tba-path-hint">PATTERN REPETITION</span>
+          </button>
+        </div>
+
+        <div class="tba-quiet">
+          <a href="/about">I need more context first</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2 ENGAGE -->
+    <section class="tba-step" data-step="engage" id="stepEngage" style="display:none;">
+      <div class="tba-frame">
+        <div class="tba-prog" aria-label="Step 1 of 2">
+          <span class="tba-prog-dot tba-prog-dot--on"></span>
+          <span class="tba-prog-dot"></span>
+        </div>
+        <h2 class="tba-h2">Name it without cleaning it up.</h2>
+        <p class="tba-sub">What keeps happening — the thing you can describe to yourself but can't seem to stop or explain to anyone else?</p>
+
+        <div class="tba-form">
+          <textarea id="tbaProblem" class="tba-textarea" rows="3" maxlength="400" placeholder="Say it plainly. No one else will read this." oninput="TBA.updateCounter()"></textarea>
+
+          <div style="position:absolute;left:-9999px;" aria-hidden="true">
+            <input type="text" id="tbaHoneypot" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="tba-form-row">
+            <span class="tba-charcount"><span id="tbaCounter">0</span>/400</span>
+            <button id="tbaEngageSubmit" class="tba-btn tba-btn--solid" type="button" onclick="TBA.submitEngage()" disabled>Continue</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2.5 REFRAME -->
+    <section class="tba-step" data-step="reframe" id="stepReframe" style="display:none;">
+      <div class="tba-frame tba-frame--center">
+        <div class="tba-reframe-block">
+          <p class="tba-eyebrow tba-eyebrow--dim">LOOK CLOSER</p>
+          <h2 id="tbaReframeLine" class="tba-h2 tba-h2--reframe"></h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 EMAIL CAPTURE -->
+    <section class="tba-step" data-step="capture" id="stepCapture" style="display:none;">
+      <div class="tba-frame">
+        <div class="tba-prog" aria-label="Step 2 of 2">
+          <span class="tba-prog-dot tba-prog-dot--on"></span>
+          <span class="tba-prog-dot tba-prog-dot--on"></span>
+        </div>
+        <h2 class="tba-h2">I built something that explains what you just described.<br>Where should I send it?</h2>
+
+        <div class="tba-form">
+          <input id="tbaEmail" class="tba-input" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com">
+
+          <div style="position:absolute;left:-9999px;" aria-hidden="true">
+            <input type="text" id="tbaHoneypot2" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="tba-consent">You'll receive a short email series. Unsubscribe anytime. <a href="/privacy" class="tba-consent-link">Privacy policy</a></p>
+
+          <div class="tba-form-row">
+            <p id="tbaCaptureStatus" class="tba-status"></p>
+            <button id="tbaCaptureSubmit" class="tba-btn tba-btn--solid" type="button" onclick="TBA.submitEmail()">Send it</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4 VALUE -->
+    <section class="tba-step" data-step="value" id="stepValue" style="display:none;">
+      <div class="tba-frame tba-frame--wide">
+        <div class="tba-value-grid">
+
+          <div class="tba-echo">
+            <p class="tba-eyebrow">YOU SAID</p>
+            <blockquote class="tba-echo-text" id="tbaEchoText"></blockquote>
+          </div>
+
+          <div class="tba-interpretation">
+            <p class="tba-eyebrow">THE PATTERN</p>
+            <h2 class="tba-h2" id="tbaInterpretation"></h2>
+          </div>
+
+          <div id="tbaVideoWrap" class="tba-video" style="display:none;">
+            <div class="tba-video-ratio">
+              <iframe id="tbaVideoFrame" src="" title="Broken Alchemist" loading="lazy" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <div id="tbaTextValue" class="tba-panels">
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHAT'S ACTUALLY HAPPENING</p>
+              <p id="tbaPatternText" class="tba-panel-body"></p>
+            </article>
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHY YOU CAN'T STOP IT</p>
+              <p id="tbaMechanismText" class="tba-panel-body"></p>
+            </article>
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHAT PEOPLE GET WRONG</p>
+              <p id="tbaReframeText" class="tba-panel-body"></p>
+            </article>
+            <article class="tba-panel">
+              <p class="tba-panel-label">WHERE THIS GETS ADDRESSED</p>
+              <p id="tbaBridgeText" class="tba-panel-body"></p>
+            </article>
+          </div>
+
+          <div class="tba-pullquote" id="tbaReinforcement"></div>
+
+          <div class="tba-cta-row">
+            <a id="tbaPrimaryCta" class="tba-btn tba-btn--solid" href="/nexus">Enter Nexus</a>
+            <a id="tbaSecondaryCta" class="tba-link" href="/identity">Go deeper <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<style>
+  /* ─── Squarespace nuclear overrides ─── */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #tba-root {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: #080808 !important;
+    z-index: 999999 !important;
+    overflow: auto !important;
+    scroll-behavior: smooth !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255,255,255,0.12) transparent !important;
+  }
+  #tba-root::-webkit-scrollbar { width: 3px !important; }
+  #tba-root::-webkit-scrollbar-track { background: transparent !important; }
+  #tba-root::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12) !important;
+    border-radius: 2px !important;
+  }
+  header, footer, .header, .footer-blocks,
+  [data-nc="header"], [data-nc="footer"] {
+    display: none !important;
+  }
+
+  /* Reset everything inside #tba-root */
+  #tba-root *, #tba-root *::before, #tba-root *::after {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Text selection */
+  #tba-root ::selection {
+    background: rgba(255,255,255,0.14) !important;
+    color: #F5F5F5 !important;
+  }
+
+  /* ─── Base ─── */
+  #tba-root .tba {
+    position: relative !important;
+    min-height: 100vh !important;
+    background: #080808 !important;
+    color: #F5F5F5 !important;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif !important;
+    overflow: hidden !important;
+    -webkit-font-smoothing: antialiased !important;
+  }
+
+  /* ─── Atmosphere + grain ─── */
+  #tba-root .tba-atmosphere {
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,255,255,0.035), transparent),
+      radial-gradient(ellipse 40% 60% at 80% 100%, rgba(255,255,255,0.015), transparent) !important;
+  }
+  /* Grain texture overlay */
+  #tba-root .tba-atmosphere::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+    background-size: 180px 180px !important;
+    opacity: 0.038 !important;
+    mix-blend-mode: overlay !important;
+  }
+
+  /* ─── Layout ─── */
+  #tba-root .tba-shell {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  #tba-root .tba-step {
+    min-height: 100vh !important;
+    opacity: 0 !important;
+    transform: translateY(8px) !important;
+    transition: opacity 340ms ease, transform 340ms ease !important;
+  }
+  #tba-root .tba-step.is-active {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  #tba-root .tba-frame {
+    max-width: 680px !important;
+    margin: 0 auto !important;
+    min-height: 100vh !important;
+    padding: 48px 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 28px !important;
+  }
+  #tba-root .tba-frame--center {
+    align-items: center !important;
+    text-align: center !important;
+  }
+  #tba-root .tba-frame--wide { max-width: 820px !important; }
+
+  /* ─── Typography ─── */
+  #tba-root .tba-eyebrow {
+    color: #8A8A96 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 11px !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    line-height: 1.4 !important;
+  }
+  #tba-root .tba-eyebrow--dim { color: rgba(255,255,255,0.3) !important; }
+
+  #tba-root h1,
+  #tba-root .tba-h1 {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(42px, 7vw, 76px) !important;
+    line-height: 1.0 !important;
+    letter-spacing: -0.04em !important;
+    font-weight: 400 !important;
+    max-width: 14ch !important;
+    color: #F5F5F5 !important;
+  }
+
+  #tba-root h2,
+  #tba-root .tba-h2 {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(32px, 5vw, 50px) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.03em !important;
+    font-weight: 400 !important;
+    max-width: 18ch !important;
+    color: #F5F5F5 !important;
+  }
+  #tba-root .tba-h2--reframe { max-width: 22ch !important; }
+
+  #tba-root .tba-lead {
+    color: #8A8A96 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: clamp(16px, 2vw, 19px) !important;
+    line-height: 1.5 !important;
+    max-width: 42ch !important;
+  }
+
+  #tba-root .tba-sub {
+    color: #8A8A96 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    max-width: 50ch !important;
+  }
+
+  /* ─── Progress dots ─── */
+  #tba-root .tba-prog {
+    display: flex !important;
+    gap: 7px !important;
+    align-items: center !important;
+  }
+  #tba-root .tba-prog-dot {
+    display: block !important;
+    width: 5px !important;
+    height: 5px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,0.15) !important;
+    transition: background 500ms ease !important;
+  }
+  #tba-root .tba-prog-dot--on {
+    background: rgba(255,255,255,0.6) !important;
+  }
+
+  /* ─── Path buttons ─── */
+  #tba-root .tba-path-group {
+    width: 100% !important;
+    max-width: 520px !important;
+    display: grid !important;
+    gap: 10px !important;
+    margin-top: 8px !important;
+  }
+  #tba-root .tba-path-btn {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    background: rgba(255,255,255,0.025) !important;
+    color: #F5F5F5 !important;
+    border-radius: 16px !important;
+    padding: 20px 22px !important;
+    text-align: left !important;
+    cursor: pointer !important;
+    display: grid !important;
+    gap: 4px !important;
+    transition: border-color 220ms ease, background 220ms ease, transform 160ms ease, box-shadow 220ms ease !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    outline: none !important;
+  }
+  #tba-root .tba-path-btn:hover {
+    border-color: rgba(255,255,255,0.16) !important;
+    background: rgba(255,255,255,0.045) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4) !important;
+  }
+  #tba-root .tba-path-btn:focus-visible {
+    border-color: rgba(255,255,255,0.3) !important;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.08) !important;
+  }
+  #tba-root .tba-path-btn.is-selected {
+    border-color: rgba(255,255,255,0.36) !important;
+    background: rgba(255,255,255,0.07) !important;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.06) !important;
+  }
+  #tba-root .tba-path-label {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    color: #F5F5F5 !important;
+  }
+  #tba-root .tba-path-hint {
+    font-size: 11px !important;
+    color: rgba(255,255,255,0.38) !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+  }
+
+  /* ─── Quiet exit ─── */
+  #tba-root .tba-quiet { margin-top: 16px !important; }
+  #tba-root .tba-quiet a {
+    color: rgba(255,255,255,0.12) !important;
+    text-decoration: none !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em !important;
+    transition: color 200ms !important;
+  }
+  #tba-root .tba-quiet a:hover { color: rgba(255,255,255,0.24) !important; }
+
+  /* ─── Forms ─── */
+  #tba-root .tba-form {
+    display: grid !important;
+    gap: 14px !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+  #tba-root .tba-input,
+  #tba-root .tba-textarea {
+    width: 100% !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    background: rgba(255,255,255,0.025) !important;
+    color: #F5F5F5 !important;
+    border-radius: 16px !important;
+    padding: 16px 18px !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    transition: border-color 220ms ease, background 220ms ease, box-shadow 220ms ease !important;
+    outline: none !important;
+  }
+  #tba-root .tba-input::placeholder,
+  #tba-root .tba-textarea::placeholder {
+    color: rgba(255,255,255,0.28) !important;
+  }
+  #tba-root .tba-input:focus,
+  #tba-root .tba-textarea:focus {
+    border-color: rgba(255,255,255,0.22) !important;
+    background: rgba(255,255,255,0.04) !important;
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.06) !important;
+  }
+  #tba-root .tba-textarea {
+    min-height: 110px !important;
+    resize: vertical !important;
+  }
+  #tba-root .tba-form-row {
+    display: flex !important;
+    gap: 14px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+  }
+  #tba-root .tba-charcount {
+    color: rgba(255,255,255,0.3) !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 12px !important;
+    transition: color 200ms !important;
+  }
+  #tba-root .tba-charcount.has-text {
+    color: rgba(255,255,255,0.55) !important;
+  }
+  #tba-root .tba-consent {
+    color: rgba(255,255,255,0.32) !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+  }
+  #tba-root .tba-consent-link {
+    color: #8A8A96 !important;
+    text-decoration: underline !important;
+  }
+  #tba-root .tba-status {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 13px !important;
+    color: rgba(255,255,255,0.38) !important;
+  }
+  #tba-root .tba-status.is-error { color: #fca5a5 !important; }
+  #tba-root .tba-status.is-ok { color: #bbf7d0 !important; }
+
+  /* ─── Keyframes ─── */
+  @keyframes tba-sweep {
+    0%, 20% { background-position: -120% center; }
+    70%, 100% { background-position: 220% center; }
+  }
+  @keyframes tba-cursor-blink {
+    0%, 49% { opacity: 0.75; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* ─── Buttons ─── */
+  #tba-root .tba-btn {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    transition: transform 160ms ease, opacity 200ms ease, box-shadow 200ms ease !important;
+    text-decoration: none !important;
+    line-height: 1.3 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  #tba-root .tba-btn:hover { transform: translateY(-2px) !important; }
+  #tba-root .tba-btn--solid {
+    background: #F5F5F5 !important;
+    color: #080808 !important;
+    min-width: 140px !important;
+  }
+  #tba-root .tba-btn--solid:hover {
+    box-shadow: 0 6px 20px rgba(245,245,245,0.15) !important;
+  }
+  /* Light sweep shimmer */
+  #tba-root .tba-btn--solid:not(:disabled)::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%) !important;
+    background-size: 200% 100% !important;
+    background-position: -120% center !important;
+    animation: tba-sweep 4.5s ease-in-out 1.2s infinite !important;
+    border-radius: 12px !important;
+  }
+  #tba-root .tba-btn--solid:disabled {
+    opacity: 0.32 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+  }
+
+  #tba-root .tba-link {
+    color: #F5F5F5 !important;
+    text-decoration: none !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    opacity: 0.7 !important;
+    transition: opacity 200ms !important;
+  }
+  #tba-root .tba-link:hover { opacity: 1 !important; }
+
+  /* ─── Reframe cursor ─── */
+  #tba-root .tba-type-cursor {
+    display: inline-block !important;
+    width: 2px !important;
+    height: 0.9em !important;
+    background: rgba(245,245,245,0.7) !important;
+    margin-left: 2px !important;
+    vertical-align: -0.05em !important;
+    border-radius: 1px !important;
+    animation: tba-cursor-blink 0.85s steps(1) infinite !important;
+  }
+
+  /* ─── Value step ─── */
+  #tba-root .tba-value-grid {
+    display: grid !important;
+    gap: 24px !important;
+    padding: 20px 0 !important;
+  }
+  #tba-root .tba-echo {
+    display: grid !important;
+    gap: 10px !important;
+    border-left: 2px solid rgba(255,255,255,0.10) !important;
+    padding-left: 18px !important;
+  }
+  #tba-root .tba-echo-text {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+    color: rgba(255,255,255,0.65) !important;
+    font-style: italic !important;
+  }
+  #tba-root .tba-interpretation {
+    display: grid !important;
+    gap: 10px !important;
+  }
+  #tba-root .tba-video {
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    background: rgba(255,255,255,0.025) !important;
+  }
+  #tba-root .tba-video-ratio {
+    position: relative !important;
+    width: 100% !important;
+    padding-top: 56.25% !important;
+  }
+  #tba-root .tba-video-ratio iframe {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+  }
+
+  /* ─── Panels with staggered reveal ─── */
+  #tba-root .tba-panels {
+    display: grid !important;
+    gap: 12px !important;
+  }
+  #tba-root .tba-panel {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    opacity: 0 !important;
+    transform: translateY(10px) !important;
+    transition: opacity 420ms ease, transform 420ms ease, border-color 200ms ease !important;
+  }
+  #tba-root .tba-panel:hover {
+    border-color: rgba(255,255,255,0.12) !important;
+  }
+  /* Stagger delays */
+  #tba-root .tba-panel:nth-child(1) { transition-delay: 60ms !important; }
+  #tba-root .tba-panel:nth-child(2) { transition-delay: 140ms !important; }
+  #tba-root .tba-panel:nth-child(3) { transition-delay: 220ms !important; }
+  #tba-root .tba-panel:nth-child(4) { transition-delay: 300ms !important; }
+  /* Reveal when value step is active */
+  #tba-root .tba-step.is-active .tba-panel {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  #tba-root .tba-panel-label {
+    color: rgba(255,255,255,0.32) !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 10px !important;
+    letter-spacing: 0.18em !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    margin-bottom: 10px !important;
+  }
+  #tba-root .tba-panel-body {
+    color: rgba(255,255,255,0.85) !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+  #tba-root .tba-pullquote {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 16px !important;
+    padding: 22px 24px !important;
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(20px, 2.5vw, 28px) !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+    color: #F5F5F5 !important;
+    opacity: 0 !important;
+    transform: translateY(10px) !important;
+    transition: opacity 420ms ease 380ms, transform 420ms ease 380ms !important;
+  }
+  #tba-root .tba-step.is-active .tba-pullquote {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  #tba-root .tba-cta-row {
+    display: flex !important;
+    gap: 18px !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+  }
+  #tba-root .tba-reframe-block {
+    display: grid !important;
+    gap: 14px !important;
+  }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 640px) {
+    #tba-root .tba-frame {
+      padding: 28px 18px !important;
+      gap: 22px !important;
+    }
+    #tba-root .tba-form-row,
+    #tba-root .tba-cta-row {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    #tba-root .tba-btn--solid { width: 100% !important; }
+  }
+</style>
+
+<script>
+window.TBA = (function() {
+  'use strict';
+
+  var CONFIG = {
+    proxyUrl: 'Enter url here',
+    nexusUrl: '/nexus',
+    deepRoutes: { pain: '/pain', identity: '/identity' },
+    videoEmbed: { pain: '', identity: '' },
+    reframeDuration: 4400
+  };
+
+  var COPY = {
+    reframe: {
+      pain: "You are not failing. You are in the maze that trauma sets you. Let's find your way out.",
+      identity: "You are not lost. You are running multiple scenarios in your head at once. Let's find YOU again."
+    },
+    interpretation: {
+      pain: 'You are not failing to stop. The pattern is still solving a problem you haven\u0027t named yet.',
+      identity: 'You don\u0027t lack identity. You lack a structure that can hold all the versions you\u0027ve built.'
+    },
+    pattern: {
+      pain: 'What keeps repeating is not random and it is not weakness. It is a learned loop \u2014 trigger, relief attempt, cost, regret, reset \u2014 that survives because it still solves an immediate problem faster than your conscious mind can intervene. The behavior is not the disease. The behavior is the fastest available medicine.',
+      identity: 'You are not looking at one self. You are looking at an adaptive system that learned to reorganize around whoever is in the room, whatever is being demanded, and whatever threat is most active. It feels like confusion because the architecture keeps shifting. It is not confusion. It is fragmentation operating exactly as designed.'
+    },
+    mechanism: {
+      pain: 'You stay inside the loop because the pattern works at the speed of the nervous system while your insight works at the speed of language. By the time you realize what happened, the relief has already landed. Speed beats understanding. That is why willpower fails \u2014 you are bringing a slow tool to a fast problem.',
+      identity: 'Insight alone does not reorganize a fragmented system. You can name every piece of yourself and still watch the pieces rearrange the moment pressure arrives. The system does not want coherence \u2014 it wants survival. Each version of you was built for a different threat, and the architecture will keep cycling until the threats are addressed at the structural level.'
+    },
+    reframe_panel: {
+      pain: 'Most people frame this as laziness, weakness, or lack of discipline. That framing is wrong at the structural level. The real issue is that the pattern is still more useful than the alternative \u2014 it provides faster relief, lower cognitive cost, and more predictable outcomes. Until that utility is named and replaced, not just resisted, nothing changes for long.',
+      identity: 'Most people treat identity work as self-expression \u2014 journaling, personality tests, figuring out what you like. That approach fails because it assumes a stable foundation. The problem is not that you haven\u0027t expressed yourself. The problem is that the architecture underneath keeps shifting, so every insight collapses into another performance or another retreat.'
+    },
+    bridge: {
+      pain: 'Nexus is where the loop gets mapped, named, and interrupted at the structural level. Not with motivation. Not with accountability partners. With precision, pressure, and people who understand how these systems actually work.',
+      identity: 'Nexus is where fragmentation stops looking like depth and starts getting reorganized. The work is structural \u2014 language, confrontation, and enough sustained pressure to expose what was built and begin governing it deliberately.'
+    },
+    pullquote: {
+      pain: 'The pattern is not random. It is consistent, predictable, and interruptible.',
+      identity: 'This is not who you are. It is what you built. And what was built can be restructured.'
+    }
+  };
+
+  var state = { path: null, response: '', email: '' };
+
+  function getEl(id) { return document.getElementById(id); }
+
+  function trackEvent(name, data) {
+    if (window.dataLayer) {
+      window.dataLayer.push({ event: 'tba_' + name, tba_step: (data && data.step) || '', tba_path: (data && data.path) || '' });
+    }
+    console.log('[TBA]', name, data);
+  }
+
+  function sanitize(str) {
+    var el = document.createElement('div');
+    el.textContent = str;
+    return el.innerHTML;
+  }
+
+  function goTo(name) {
+    var allSteps = document.querySelectorAll('#tba-root .tba-step');
+    for (var i = 0; i < allSteps.length; i++) {
+      var step = allSteps[i];
+      if (step.getAttribute('data-step') === name) {
+        step.style.display = 'block';
+        step.offsetHeight; // force reflow
+        step.classList.add('is-active');
+      } else {
+        step.classList.remove('is-active');
+        (function(s) {
+          setTimeout(function() {
+            if (!s.classList.contains('is-active')) s.style.display = 'none';
+          }, 360);
+        })(step);
+      }
+    }
+    var root = getEl('tbaFunnel');
+    if (root) root.setAttribute('data-step', name);
+    var tbaRoot = document.getElementById('tba-root');
+    if (tbaRoot) tbaRoot.scrollTo({ top: 0, behavior: 'smooth' });
+    trackEvent('step_view', { step: name, path: state.path });
+  }
+
+  /* Typewriter effect for the reframe moment */
+  function typewriter(el, text, speedMs) {
+    el.textContent = '';
+    var speed = speedMs || 22;
+    var cursor = document.createElement('span');
+    cursor.className = 'tba-type-cursor';
+    el.appendChild(cursor);
+    var i = 0;
+    var iv = setInterval(function() {
+      if (i < text.length) {
+        el.insertBefore(document.createTextNode(text.charAt(i)), cursor);
+        i++;
+      } else {
+        clearInterval(iv);
+        /* Remove cursor after a beat */
+        setTimeout(function() {
+          if (cursor.parentNode) cursor.parentNode.removeChild(cursor);
+        }, 900);
+      }
+    }, speed);
+  }
+
+  function hydrateValue() {
+    var p = state.path;
+    getEl('tbaEchoText').textContent = state.response;
+    getEl('tbaInterpretation').textContent = COPY.interpretation[p];
+    getEl('tbaPatternText').textContent = COPY.pattern[p];
+    getEl('tbaMechanismText').textContent = COPY.mechanism[p];
+    getEl('tbaReframeText').textContent = COPY.reframe_panel[p];
+    getEl('tbaBridgeText').textContent = COPY.bridge[p];
+    getEl('tbaReinforcement').textContent = COPY.pullquote[p];
+    getEl('tbaPrimaryCta').href = CONFIG.nexusUrl;
+    getEl('tbaSecondaryCta').href = CONFIG.deepRoutes[p] || '/identity';
+    var embed = CONFIG.videoEmbed[p];
+    if (embed && embed.trim()) {
+      getEl('tbaVideoFrame').src = embed.trim();
+      getEl('tbaVideoWrap').style.display = 'block';
+      getEl('tbaTextValue').style.display = 'none';
+    } else {
+      getEl('tbaVideoFrame').src = '';
+      getEl('tbaVideoWrap').style.display = 'none';
+      getEl('tbaTextValue').style.display = 'grid';
+    }
+  }
+
+  function sendLead(payload) {
+    if (!CONFIG.proxyUrl || CONFIG.proxyUrl.indexOf('YOUR_PROXY') !== -1) {
+      console.warn('[TBA] Proxy URL not configured. Lead not sent. Advancing funnel for testing.');
+      return Promise.resolve();
+    }
+    return fetch(CONFIG.proxyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res) {
+      if (!res.ok) throw new Error('Submission failed');
+      return res;
+    });
+  }
+
+  return {
+    selectPath: function(path, btn) {
+      /* Brief selection ring before transition */
+      if (btn) {
+        btn.classList.add('is-selected');
+      }
+      state.path = path;
+      /* Tag the funnel root with the chosen path for CSS targeting */
+      var funnel = getEl('tbaFunnel');
+      if (funnel) funnel.setAttribute('data-path', path);
+      trackEvent('path_selected', { path: path });
+      setTimeout(function() {
+        goTo('engage');
+        setTimeout(function() {
+          var field = getEl('tbaProblem');
+          if (field) field.focus();
+        }, 300);
+      }, 180);
+    },
+
+    updateCounter: function() {
+      var field = getEl('tbaProblem');
+      var counter = getEl('tbaCounter');
+      var btn = getEl('tbaEngageSubmit');
+      var countWrap = counter && counter.parentElement;
+      if (!field || !counter || !btn) return;
+      var len = field.value.trim().length;
+      counter.textContent = String(len);
+      btn.disabled = (len === 0);
+      if (countWrap) {
+        if (len > 0) {
+          countWrap.classList.add('has-text');
+        } else {
+          countWrap.classList.remove('has-text');
+        }
+      }
+    },
+
+    submitEngage: function() {
+      var field = getEl('tbaProblem');
+      if (!field) return;
+      var val = field.value.trim();
+      if (!val) return;
+      state.response = val;
+      trackEvent('engage_submitted', { path: state.path });
+      var reframeLine = getEl('tbaReframeLine');
+      goTo('reframe');
+      /* Typewriter kicks in after the step fade-in completes */
+      setTimeout(function() {
+        typewriter(reframeLine, COPY.reframe[state.path], 22);
+      }, 360);
+      setTimeout(function() {
+        goTo('capture');
+        var emailField = getEl('tbaEmail');
+        if (emailField) emailField.focus();
+      }, CONFIG.reframeDuration);
+    },
+
+    submitEmail: function() {
+      var statusEl = getEl('tbaCaptureStatus');
+      var btn = getEl('tbaCaptureSubmit');
+      var emailField = getEl('tbaEmail');
+      var honeypot = getEl('tbaHoneypot');
+      statusEl.textContent = '';
+      statusEl.className = 'tba-status';
+      if (honeypot && honeypot.value) {
+        statusEl.textContent = 'Done.';
+        statusEl.className = 'tba-status is-ok';
+        return;
+      }
+      var email = emailField.value.trim();
+      if (!email) return;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        statusEl.textContent = 'Enter a valid email address.';
+        statusEl.className = 'tba-status is-error';
+        return;
+      }
+      state.email = email;
+      btn.disabled = true;
+      btn.textContent = 'Sending\u2026';
+      var payload = {
+        email: sanitize(state.email),
+        path: state.path,
+        response: sanitize(state.response),
+        timestamp: new Date().toISOString(),
+        source: 'tba-home-v4'
+      };
+      sendLead(payload).then(function() {
+        trackEvent('lead_captured', { path: state.path });
+        statusEl.textContent = 'Locked in.';
+        statusEl.className = 'tba-status is-ok';
+        hydrateValue();
+        setTimeout(function() { goTo('value'); }, 300);
+      }).catch(function(err) {
+        statusEl.textContent = 'Something went wrong. Try again in a moment.';
+        statusEl.className = 'tba-status is-error';
+        console.error('[TBA] Lead error:', err);
+      }).finally(function() {
+        btn.disabled = false;
+        btn.textContent = 'Send it';
+      });
+    }
+  };
+})();
+</script>
+</div>
