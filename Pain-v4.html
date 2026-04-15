@@ -1,0 +1,312 @@
+<div id="tba-root">
+
+<!--
+  BROKEN ALCHEMIST — PAIN PAGE (v4)
+  Enhanced: reading progress bar, scroll-reveal cards, staggered entry,
+  amber bridge card, grain texture, refined typography.
+  Squarespace: aggressive color overrides.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif&display=swap" rel="stylesheet">
+
+<!-- Reading progress bar -->
+<div class="tba-read-bar" id="tbaReadBar" aria-hidden="true"></div>
+
+<section class="tba-deep">
+  <div class="tba-deep-atmo"></div>
+  <div class="tba-deep-shell">
+    <div class="tba-deep-inner">
+
+      <p class="tba-deep-eyebrow tba-entry-1">THE BROKEN ALCHEMIST / PAIN</p>
+
+      <h1 class="tba-deep-h1 tba-entry-2">You don't have a discipline problem. You have a pattern that still solves a problem faster than you can think.</h1>
+
+      <p class="tba-deep-lead tba-entry-3">That is why it keeps surviving your best intentions. The loop does not care about your commitments. It operates at the speed of the nervous system, and your willpower operates at the speed of language.</p>
+
+      <div class="tba-deep-cards">
+        <article class="tba-deep-card tba-reveal">
+          <p class="tba-deep-label">THE LOOP</p>
+          <p class="tba-deep-body">Trigger. Relief attempt. Temporary regulation. Cost. Regret. Reset. The sequence is not random — it is reinforced. Every cycle that produces even momentary relief strengthens the neural pathway that produced it. You are not fighting a bad habit. You are fighting a system that has been optimizing itself for years, and it is better at its job than you are at yours.</p>
+        </article>
+        <article class="tba-deep-card tba-reveal">
+          <p class="tba-deep-label">THE REAL COST</p>
+          <p class="tba-deep-body">The behavior itself is only the visible part. Underneath it, something more corrosive is happening: your internal credibility is eroding. Every broken promise to yourself lowers the threshold for the next one. Your language gets softer. Your standards quietly adjust. You begin narrating your own compromises as growth, flexibility, or self-compassion — because the alternative is admitting that you are losing a war you cannot name.</p>
+        </article>
+        <article class="tba-deep-card tba-reveal">
+          <p class="tba-deep-label">WHAT DOES NOT WORK</p>
+          <p class="tba-deep-body">Motivation decays. Shame reinforces the loop by producing exactly the emotional state that triggers the next cycle. Accountability to someone who does not understand the mechanics becomes another performance — you manage their perception instead of addressing the structure. Public promises create stakes, not change. None of these approaches touch the system where it actually operates.</p>
+        </article>
+        <article class="tba-deep-card tba-reveal">
+          <p class="tba-deep-label">WHAT DOES</p>
+          <p class="tba-deep-body">The pattern has to be mapped precisely — not in emotional language, but in mechanical language. What is the trigger? What does the relief attempt actually solve? What is the cost timeline? Where does the regret redirect? Once the loop is described as a system rather than a failure, it becomes interruptible. Not through resistance. Through structural replacement.</p>
+        </article>
+        <article class="tba-deep-card tba-deep-card--bridge tba-reveal">
+          <p class="tba-deep-label">THE BRIDGE</p>
+          <p class="tba-deep-body">Nexus is where the loop gets broken on purpose. Not with encouragement or vague support. With mechanical precision — mapping the trigger chain, identifying the utility the pattern still provides, and building a replacement structure that can match the speed of the nervous system. You do not need someone who believes in you. You need someone who understands what you are actually fighting.</p>
+        </article>
+      </div>
+
+      <div class="tba-deep-cta tba-entry-4">
+        <a class="tba-deep-btn" href="/nexus">Enter Nexus</a>
+        <a class="tba-deep-link" href="/">Start from the beginning <span aria-hidden="true">&rarr;</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  html, body { margin: 0 !important; padding: 0 !important; }
+  #tba-root {
+    position: fixed !important; top: 0 !important; left: 0 !important;
+    width: 100vw !important; height: 100vh !important;
+    background: #080808 !important; z-index: 999999 !important;
+    overflow: auto !important;
+    scroll-behavior: smooth !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255,255,255,0.12) transparent !important;
+  }
+  #tba-root::-webkit-scrollbar { width: 3px !important; }
+  #tba-root::-webkit-scrollbar-track { background: transparent !important; }
+  #tba-root::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12) !important;
+    border-radius: 2px !important;
+  }
+  header, footer, .header, .footer-blocks, [data-nc="header"], [data-nc="footer"] { display: none !important; }
+  #tba-root *, #tba-root *::before, #tba-root *::after {
+    box-sizing: border-box !important; margin: 0 !important; padding: 0 !important;
+  }
+  #tba-root ::selection {
+    background: rgba(255,255,255,0.14) !important;
+    color: #F5F5F5 !important;
+  }
+
+  /* ─── Reading progress bar ─── */
+  #tba-root .tba-read-bar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 2px !important;
+    width: 0% !important;
+    background: rgba(255,255,255,0.35) !important;
+    z-index: 9999999 !important;
+    transition: width 80ms linear !important;
+    pointer-events: none !important;
+  }
+
+  /* ─── Base ─── */
+  #tba-root .tba-deep {
+    background: #080808 !important; color: #F5F5F5 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    position: relative !important; min-height: 100vh !important;
+    -webkit-font-smoothing: antialiased !important;
+  }
+
+  /* ─── Atmosphere + grain ─── */
+  #tba-root .tba-deep-atmo {
+    position: absolute !important; inset: 0 !important; pointer-events: none !important;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 5%, rgba(255,255,255,0.035), transparent),
+      radial-gradient(ellipse 30% 50% at 90% 90%, rgba(255,255,255,0.012), transparent) !important;
+  }
+  #tba-root .tba-deep-atmo::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+    background-size: 180px 180px !important;
+    opacity: 0.038 !important;
+    mix-blend-mode: overlay !important;
+  }
+
+  #tba-root .tba-deep-shell {
+    position: relative !important; z-index: 1 !important;
+    padding: 64px 24px 80px !important;
+  }
+  #tba-root .tba-deep-inner {
+    max-width: 780px !important; margin: 0 auto !important;
+    display: grid !important; gap: 32px !important;
+  }
+
+  /* ─── Typography ─── */
+  #tba-root .tba-deep-eyebrow {
+    color: #8A8A96 !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 11px !important; letter-spacing: 0.2em !important;
+    text-transform: uppercase !important; font-weight: 700 !important;
+  }
+  #tba-root h1, #tba-root .tba-deep-h1 {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(36px, 5.5vw, 64px) !important; line-height: 1.04 !important;
+    letter-spacing: -0.04em !important; font-weight: 400 !important;
+    max-width: 18ch !important; color: #F5F5F5 !important;
+  }
+  #tba-root .tba-deep-lead {
+    color: #8A8A96 !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 17px !important; line-height: 1.6 !important; max-width: 56ch !important;
+  }
+
+  /* ─── Page entry animations ─── */
+  @keyframes tba-entry {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  #tba-root .tba-entry-1 { animation: tba-entry 0.55s ease 0.05s both !important; }
+  #tba-root .tba-entry-2 { animation: tba-entry 0.6s  ease 0.18s both !important; }
+  #tba-root .tba-entry-3 { animation: tba-entry 0.6s  ease 0.32s both !important; }
+  #tba-root .tba-entry-4 { animation: tba-entry 0.6s  ease 0.42s both !important; }
+
+  /* ─── Cards ─── */
+  #tba-root .tba-deep-cards { display: grid !important; gap: 12px !important; margin-top: 4px !important; }
+
+  #tba-root .tba-deep-card {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 16px !important; padding: 22px !important;
+    display: grid !important; gap: 10px !important;
+    opacity: 0 !important;
+    transform: translateY(18px) !important;
+    transition: opacity 500ms ease, transform 500ms ease, border-color 220ms ease !important;
+  }
+  #tba-root .tba-deep-card:hover {
+    border-color: rgba(255,255,255,0.12) !important;
+  }
+  #tba-root .tba-deep-card.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* ─── Bridge card — warm amber accent ─── */
+  #tba-root .tba-deep-card--bridge {
+    border-color: rgba(210, 168, 90, 0.22) !important;
+    background: rgba(210, 168, 90, 0.04) !important;
+  }
+  #tba-root .tba-deep-card--bridge:hover {
+    border-color: rgba(210, 168, 90, 0.35) !important;
+  }
+
+  /* ─── Card labels with accent dot ─── */
+  #tba-root .tba-deep-label {
+    color: rgba(255,255,255,0.32) !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 10px !important; letter-spacing: 0.18em !important;
+    font-weight: 700 !important; text-transform: uppercase !important;
+    display: flex !important; align-items: center !important; gap: 8px !important;
+  }
+  #tba-root .tba-deep-label::before {
+    content: '' !important;
+    display: block !important;
+    width: 4px !important;
+    height: 4px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,0.25) !important;
+    flex-shrink: 0 !important;
+  }
+  #tba-root .tba-deep-card--bridge .tba-deep-label {
+    color: rgba(210, 168, 90, 0.75) !important;
+  }
+  #tba-root .tba-deep-card--bridge .tba-deep-label::before {
+    background: rgba(210, 168, 90, 0.6) !important;
+  }
+
+  #tba-root .tba-deep-body, #tba-root .tba-deep-card p.tba-deep-body {
+    color: rgba(255,255,255,0.85) !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 16px !important; line-height: 1.65 !important;
+  }
+
+  /* ─── CTA ─── */
+  #tba-root .tba-deep-cta {
+    display: flex !important; gap: 18px !important; align-items: center !important;
+    flex-wrap: wrap !important; margin-top: 4px !important;
+  }
+  #tba-root .tba-deep-btn {
+    display: inline-flex !important; align-items: center !important; justify-content: center !important;
+    min-height: 52px !important; padding: 14px 28px !important; border-radius: 12px !important;
+    background: #F5F5F5 !important; color: #080808 !important;
+    text-decoration: none !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important; font-weight: 600 !important;
+    transition: transform 160ms ease, box-shadow 200ms ease !important;
+    position: relative !important; overflow: hidden !important;
+  }
+  @keyframes tba-sweep {
+    0%, 20% { background-position: -120% center; }
+    70%, 100% { background-position: 220% center; }
+  }
+  #tba-root .tba-deep-btn::after {
+    content: '' !important;
+    position: absolute !important; inset: 0 !important;
+    pointer-events: none !important;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%) !important;
+    background-size: 200% 100% !important;
+    background-position: -120% center !important;
+    animation: tba-sweep 4.5s ease-in-out 1.5s infinite !important;
+    border-radius: 12px !important;
+  }
+  #tba-root .tba-deep-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(245,245,245,0.14) !important;
+  }
+  #tba-root .tba-deep-link {
+    color: #F5F5F5 !important; text-decoration: none !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important; font-weight: 600 !important; opacity: 0.65 !important;
+    transition: opacity 200ms !important;
+  }
+  #tba-root .tba-deep-link:hover { opacity: 1 !important; }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 640px) {
+    #tba-root .tba-deep-shell { padding: 44px 18px 56px !important; }
+    #tba-root .tba-deep-cta { flex-direction: column !important; align-items: stretch !important; }
+    #tba-root .tba-deep-btn { width: 100% !important; text-align: center !important; }
+    #tba-root .tba-deep-link { text-align: center !important; }
+  }
+</style>
+
+<script>
+(function() {
+  /* ─── Reading progress bar ─── */
+  var bar = document.getElementById('tbaReadBar');
+  var root = document.getElementById('tba-root');
+  if (bar && root) {
+    root.addEventListener('scroll', function() {
+      var scrolled = root.scrollTop;
+      var total = root.scrollHeight - root.clientHeight;
+      bar.style.width = (total > 0 ? Math.min(100, Math.round((scrolled / total) * 100)) : 0) + '%';
+    }, { passive: true });
+  }
+
+  /* ─── Scroll-reveal for cards ─── */
+  var cards = document.querySelectorAll('#tba-root .tba-reveal');
+  if (!cards.length) return;
+
+  if (!window.IntersectionObserver) {
+    for (var j = 0; j < cards.length; j++) {
+      cards[j].style.opacity = '1';
+      cards[j].style.transform = 'none';
+    }
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: document.getElementById('tba-root'),
+    threshold: 0.08,
+    rootMargin: '0px 0px -32px 0px'
+  });
+
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].style.transitionDelay = (i * 75) + 'ms';
+    io.observe(cards[i]);
+  }
+})();
+</script>
+</div>
