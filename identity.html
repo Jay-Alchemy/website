@@ -1,18 +1,4 @@
 <div id="tba-root">
-<style>
-html, body { margin: 0 !important; padding: 0 !important; }
-#tba-root {
-  position: fixed; top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: #080808; z-index: 999999; overflow: auto;
-}
-header, footer, .header, .footer-blocks { display: none !important; }
-</style>
-
-<!--
-BROKEN ALCHEMIST — /identity DEEP PAGE (v2)
-Squarespace: Blank page → Code Block → Paste.
--->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,37 +16,31 @@ Squarespace: Blank page → Code Block → Paste.
       <p class="tba-deep-lead">That is why clarity keeps collapsing. You are not confused — you are running multiple operating systems that were each designed for a different version of danger.</p>
 
       <div class="tba-deep-cards">
-
         <article class="tba-deep-card">
           <p class="tba-deep-label">FRAGMENTATION</p>
           <p class="tba-deep-body">Different rooms produce different people. Different relationships produce different voices. This is not complexity — it is an adaptive system cycling through the versions it built to manage perception, pressure, and the threat of exposure. Each version solves a problem. None of them can hold the full weight of a single honest moment.</p>
         </article>
-
         <article class="tba-deep-card">
           <p class="tba-deep-label">THE FALSE SELF ARCHITECTURE</p>
           <p class="tba-deep-body">You did not choose these versions. They were constructed under duress — shaped by what was punished, what was rewarded, what had to be hidden, and what had to be performed. Some of them are competent. Some are charming. Some are invisible. The problem is not that they exist. The problem is that the switchboard running them operates below the level of your awareness, and it optimizes for safety, not coherence.</p>
         </article>
-
         <article class="tba-deep-card">
           <p class="tba-deep-label">WHY INSIGHT KEEPS FAILING</p>
           <p class="tba-deep-body">You can describe every version of yourself in precise language and still watch the system override you the moment pressure arrives. Insight is observation, not governance. Naming a pattern does not reorganize the nervous system that keeps producing it. This is why therapy can feel productive and life can feel unchanged — understanding and structural change operate on different timelines.</p>
         </article>
-
         <article class="tba-deep-card">
           <p class="tba-deep-label">WHAT ACTUALLY HOLDS</p>
           <p class="tba-deep-body">The versions do not need to be destroyed. They need to be governed. That means building an internal structure that does not collapse when the environment shifts — one that can hold contradiction, absorb pressure, and maintain a coherent position without performing. That is not self-discovery. That is engineering.</p>
         </article>
-
         <article class="tba-deep-card tba-deep-card--bridge">
           <p class="tba-deep-label">THE BRIDGE</p>
           <p class="tba-deep-body">Nexus is where fragmentation stops masquerading as depth. The work is structural — precise language, honest confrontation, and sustained pressure applied in a room where no one is interested in your performance. You do not leave with a new identity. You leave with a system that can hold the one you actually have.</p>
         </article>
-
       </div>
 
       <div class="tba-deep-cta">
         <a class="tba-deep-btn" href="/nexus">Enter Nexus</a>
-        <a class="tba-deep-link" href="/">Start from the beginning <span aria-hidden="true">→</span></a>
+        <a class="tba-deep-link" href="/">Start from the beginning <span aria-hidden="true">&rarr;</span></a>
       </div>
 
     </div>
@@ -68,144 +48,93 @@ Squarespace: Blank page → Code Block → Paste.
 </section>
 
 <style>
-  .tba-deep, .tba-deep * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  .tba-deep {
-    --bg: #080808;
-    --fg: #F5F5F5;
-    --muted: #8A8A96;
-    --dim: rgba(255,255,255,0.38);
-    --border: rgba(255,255,255,0.08);
-    --surface: rgba(255,255,255,0.025);
-    --font-body: 'DM Sans', system-ui, sans-serif;
-    --font-display: 'Instrument Serif', Georgia, serif;
-    --radius: 16px;
-
-    background: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-body);
-    position: relative;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
+  html, body { margin: 0 !important; padding: 0 !important; }
+  #tba-root {
+    position: fixed !important; top: 0 !important; left: 0 !important;
+    width: 100vw !important; height: 100vh !important;
+    background: #080808 !important; z-index: 999999 !important; overflow: auto !important;
   }
+  header, footer, .header, .footer-blocks, [data-nc="header"], [data-nc="footer"] { display: none !important; }
+  #tba-root *, #tba-root *::before, #tba-root *::after { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; }
 
-  .tba-deep-atmo {
-    position: absolute; inset: 0; pointer-events: none;
-    background:
-      radial-gradient(ellipse 60% 40% at 50% 5%, rgba(255,255,255,0.035), transparent),
-      radial-gradient(ellipse 30% 50% at 90% 90%, rgba(255,255,255,0.012), transparent);
+  #tba-root .tba-deep {
+    background: #080808 !important; color: #F5F5F5 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    position: relative !important; min-height: 100vh !important;
+    -webkit-font-smoothing: antialiased !important;
   }
-
-  .tba-deep-shell {
-    position: relative; z-index: 1;
-    padding: 56px 24px 64px;
+  #tba-root .tba-deep-atmo {
+    position: absolute !important; inset: 0 !important; pointer-events: none !important;
+    background: radial-gradient(ellipse 60% 40% at 50% 5%, rgba(255,255,255,0.035), transparent), radial-gradient(ellipse 30% 50% at 90% 90%, rgba(255,255,255,0.012), transparent) !important;
   }
-
-  .tba-deep-inner {
-    max-width: 780px;
-    margin: 0 auto;
-    display: grid;
-    gap: 28px;
+  #tba-root .tba-deep-shell {
+    position: relative !important; z-index: 1 !important;
+    padding: 56px 24px 64px !important;
   }
-
-  .tba-deep-eyebrow {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-weight: 700;
+  #tba-root .tba-deep-inner {
+    max-width: 780px !important; margin: 0 auto !important;
+    display: grid !important; gap: 28px !important;
   }
-
-  .tba-deep-h1 {
-    font-family: var(--font-display);
-    font-size: clamp(36px, 5.5vw, 64px);
-    line-height: 1.04;
-    letter-spacing: -0.04em;
-    font-weight: 400;
-    max-width: 16ch;
+  #tba-root .tba-deep-eyebrow {
+    color: #8A8A96 !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 11px !important; letter-spacing: 0.2em !important;
+    text-transform: uppercase !important; font-weight: 700 !important;
   }
-
-  .tba-deep-lead {
-    color: var(--muted);
-    font-size: 17px;
-    line-height: 1.55;
-    max-width: 56ch;
+  #tba-root h1, #tba-root .tba-deep-h1 {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(36px, 5.5vw, 64px) !important; line-height: 1.04 !important;
+    letter-spacing: -0.04em !important; font-weight: 400 !important;
+    max-width: 16ch !important; color: #F5F5F5 !important;
   }
-
-  .tba-deep-cards {
-    display: grid;
-    gap: 12px;
-    margin-top: 4px;
+  #tba-root .tba-deep-lead {
+    color: #8A8A96 !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 17px !important; line-height: 1.55 !important; max-width: 56ch !important;
   }
-
-  .tba-deep-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px;
-    display: grid;
-    gap: 10px;
+  #tba-root .tba-deep-cards { display: grid !important; gap: 12px !important; margin-top: 4px !important; }
+  #tba-root .tba-deep-card {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 16px !important; padding: 22px !important;
+    display: grid !important; gap: 10px !important;
   }
-
-  .tba-deep-card--bridge {
-    border-color: rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.04);
+  #tba-root .tba-deep-card--bridge {
+    border-color: rgba(255,255,255,0.12) !important;
+    background: rgba(255,255,255,0.04) !important;
   }
-
-  .tba-deep-label {
-    color: var(--dim);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    font-weight: 700;
-    text-transform: uppercase;
+  #tba-root .tba-deep-label {
+    color: rgba(255,255,255,0.38) !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 10px !important; letter-spacing: 0.18em !important;
+    font-weight: 700 !important; text-transform: uppercase !important;
   }
-
-  .tba-deep-body {
-    color: rgba(255,255,255,0.88);
-    font-size: 16px;
-    line-height: 1.6;
+  #tba-root .tba-deep-body, #tba-root .tba-deep-card p {
+    color: rgba(255,255,255,0.88) !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 16px !important; line-height: 1.6 !important;
   }
-
-  .tba-deep-cta {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 8px;
+  #tba-root .tba-deep-cta {
+    display: flex !important; gap: 18px !important; align-items: center !important;
+    flex-wrap: wrap !important; margin-top: 8px !important;
   }
-
-  .tba-deep-btn {
-    display: inline-flex;
-    align-items: center; justify-content: center;
-    min-height: 52px;
-    padding: 14px 24px;
-    border-radius: 12px;
-    background: var(--fg);
-    color: var(--bg);
-    text-decoration: none;
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 600;
-    transition: transform 160ms;
+  #tba-root .tba-deep-btn {
+    display: inline-flex !important; align-items: center !important; justify-content: center !important;
+    min-height: 52px !important; padding: 14px 24px !important; border-radius: 12px !important;
+    background: #F5F5F5 !important; color: #080808 !important;
+    text-decoration: none !important; font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important; font-weight: 600 !important; transition: transform 160ms !important;
   }
-  .tba-deep-btn:hover { transform: translateY(-1px); }
-  .tba-deep-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
-
-  .tba-deep-link {
-    color: var(--fg);
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    opacity: 0.8;
-    transition: opacity 200ms;
+  #tba-root .tba-deep-btn:hover { transform: translateY(-1px) !important; }
+  #tba-root .tba-deep-link {
+    color: #F5F5F5 !important; text-decoration: none !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important; font-weight: 600 !important; opacity: 0.8 !important;
+    transition: opacity 200ms !important;
   }
-  .tba-deep-link:hover { opacity: 1; }
+  #tba-root .tba-deep-link:hover { opacity: 1 !important; }
 
   @media (max-width: 640px) {
-    .tba-deep-shell { padding: 36px 18px 48px; }
-    .tba-deep-cta { flex-direction: column; align-items: stretch; }
-    .tba-deep-btn { width: 100%; }
-    .tba-deep-link { text-align: center; }
+    #tba-root .tba-deep-shell { padding: 36px 18px 48px !important; }
+    #tba-root .tba-deep-cta { flex-direction: column !important; align-items: stretch !important; }
+    #tba-root .tba-deep-btn { width: 100% !important; }
+    #tba-root .tba-deep-link { text-align: center !important; }
   }
 </style>
 </div>
