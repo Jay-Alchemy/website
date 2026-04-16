@@ -1,99 +1,110 @@
 <div id="tba-root">
-<style>
-/* Kill ALL Squarespace spacing */
-html, body {
-  margin: 0 !important;
-  padding: 0 !important;
-}
 
-/* Force our container to ignore Squarespace layout */
-#tba-root {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #0A0A0A;
-  z-index: 999999;
-  overflow: auto;
-}
-
-/* Ensure funnel fills container */
-.tba-funnel {
-  min-height: 100%;
-}
-
-/* Hide header/footer safely */
-header, footer {
-  display: none !important;
-}
-</style>
 <!--
-BROKEN ALCHEMIST — /library PAGE
-Use this on a blank Squarespace page in a Code Block.
+  BROKEN ALCHEMIST — LIBRARY (v2)
+  Squarespace code injection block. Matches TBA v4 design system.
 
-Purpose:
-- Authority layer (post-capture or deep link)
-- Blog + content library
-- Keeps tone aligned (no soft content)
+  ═══════════════════════════════════════════════════════
+  HOW TO ADD A NEW POST — READ THIS FIRST
+  ═══════════════════════════════════════════════════════
+  1. Upload your PDF to Squarespace (Settings → Advanced
+     → File Storage) OR Google Drive (share → "Anyone
+     with the link can view" → copy that link).
+
+  2. Scroll to the POSTS array in the <script> block below.
+
+  3. Copy any existing post object and paste it into the
+     array. Update the five fields: title, category,
+     teaser, url, readTime.
+
+  4. Save the Squarespace page. The post appears
+     immediately. Filtering and search update automatically.
+
+  CATEGORIES: 'pain' | 'identity' | 'trauma' | 'systems'
+
+  FEATURED: Set featured: true on ONE post at a time.
+            It renders as a full-width hero card at top.
+
+  DATES: Use 'YYYY-MM' format. Newer dates sort first.
+  ═══════════════════════════════════════════════════════
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Instrument+Serif&display=swap" rel="stylesheet">
+
+<div class="tba-read-bar" id="tbaReadBar" aria-hidden="true"></div>
 
 <section class="tba-lib">
-  <div class="tba-lib-bg"></div>
+  <div class="tba-lib-atmo"></div>
 
   <div class="tba-lib-shell">
     <div class="tba-lib-inner">
 
       <!-- HEADER -->
-      <div class="tba-lib-header">
-        <p class="tba-lib-kicker">THE BROKEN ALCHEMIST</p>
-        <h1 class="tba-lib-title">You’re not here to browse.</h1>
-        <p class="tba-lib-sub">You’re here because something keeps repeating.</p>
+      <header class="tba-lib-header">
+        <a href="/" class="tba-lib-back tba-entry-1">← THE BROKEN ALCHEMIST</a>
+        <h1 class="tba-lib-h1 tba-entry-2">The work has already been documented.</h1>
+        <p class="tba-lib-lead tba-entry-3">Read what won't leave you alone. Then decide if you want it solved.</p>
+      </header>
+
+      <!-- CONTROLS: filter + search -->
+      <div class="tba-lib-controls tba-entry-4">
+        <div class="tba-lib-filters" id="tbaFilters" role="group" aria-label="Filter by category">
+          <button class="tba-lib-filter active" data-filter="all">All</button>
+          <button class="tba-lib-filter" data-filter="pain">
+            <span class="tba-filter-dot" style="background:rgba(200,120,55,0.85)"></span>Pain
+          </button>
+          <button class="tba-lib-filter" data-filter="identity">
+            <span class="tba-filter-dot" style="background:rgba(100,135,215,0.85)"></span>Identity
+          </button>
+          <button class="tba-lib-filter" data-filter="trauma">
+            <span class="tba-filter-dot" style="background:rgba(175,80,85,0.85)"></span>Trauma
+          </button>
+          <button class="tba-lib-filter" data-filter="systems">
+            <span class="tba-filter-dot" style="background:rgba(90,160,120,0.85)"></span>Systems
+          </button>
+        </div>
+        <div class="tba-lib-search-wrap">
+          <input
+            class="tba-lib-search"
+            id="tbaSearch"
+            type="search"
+            placeholder="Search posts..."
+            aria-label="Search posts"
+            autocomplete="off"
+          >
+        </div>
       </div>
 
-      <!-- FILTER / NAV -->
-      <div class="tba-lib-filter">
-        <button class="tba-lib-filter-btn active" data-filter="all">All</button>
-        <button class="tba-lib-filter-btn" data-filter="pain">Pain</button>
-        <button class="tba-lib-filter-btn" data-filter="identity">Identity</button>
-        <button class="tba-lib-filter-btn" data-filter="trauma">Trauma</button>
+      <!-- RESULTS COUNT + GRID wrapped together so count hugs the grid -->
+      <div class="tba-lib-body">
+        <p class="tba-lib-count" id="tbaCount" aria-live="polite"></p>
+
+        <!-- CONTENT GRID (populated by JS) -->
+        <div class="tba-lib-grid" id="tbaGrid">
+          <noscript>
+            <p style="color:rgba(255,255,255,0.4);padding:20px 0;">
+              JavaScript is required to view the library.
+            </p>
+          </noscript>
+        </div>
       </div>
 
-      <!-- CONTENT GRID -->
-      <div class="tba-lib-grid" id="tbaLibGrid">
-
-        <!-- CARD -->
-        <article class="tba-lib-card" data-category="pain">
-          <p class="tba-lib-card-label">PATTERN</p>
-          <h3 class="tba-lib-card-title">Breaking Self-Destructive Patterns</h3>
-          <p class="tba-lib-card-text">You don’t repeat patterns because you’re weak. You repeat them because they still solve something.</p>
-          <a href="#" class="tba-lib-card-link">Read →</a>
-        </article>
-
-        <article class="tba-lib-card" data-category="identity">
-          <p class="tba-lib-card-label">IDENTITY</p>
-          <h3 class="tba-lib-card-title">Why You Don’t Feel Like Yourself</h3>
-          <p class="tba-lib-card-text">You’re not lost. You’re switching between versions built for different environments.</p>
-          <a href="#" class="tba-lib-card-link">Read →</a>
-        </article>
-
-        <article class="tba-lib-card" data-category="trauma">
-          <p class="tba-lib-card-label">TRAUMA</p>
-          <h3 class="tba-lib-card-title">Why Your Brain Won’t Let Go</h3>
-          <p class="tba-lib-card-text">Unresolved loops aren’t emotional. They’re neurological systems still waiting for closure.</p>
-          <a href="#" class="tba-lib-card-link">Read →</a>
-        </article>
-
+      <!-- EMPTY STATE -->
+      <div class="tba-lib-empty" id="tbaEmpty" style="display:none;">
+        <p class="tba-lib-empty-title">Nothing found.</p>
+        <p class="tba-lib-empty-sub">The pattern might not have a name yet.</p>
       </div>
 
       <!-- CTA -->
-      <div class="tba-lib-cta">
-        <h2>You’ve seen enough.</h2>
-        <a href="/nexus" class="tba-lib-btn">Step inside</a>
+      <div class="tba-lib-cta" id="tbaLibCta">
+        <p class="tba-lib-cta-label">WHAT YOU'VE READ POINTS HERE</p>
+        <h2 class="tba-lib-cta-h2">Ready to stop reading about it?</h2>
+        <div class="tba-lib-cta-row">
+          <a href="/nexus" class="tba-lib-btn">Enter Nexus</a>
+          <a href="/" class="tba-lib-link">Start from the beginning <span aria-hidden="true">→</span></a>
+        </div>
       </div>
 
     </div>
@@ -101,77 +112,735 @@ Purpose:
 </section>
 
 <style>
-.tba-lib, .tba-lib * { box-sizing: border-box; }
-.tba-lib {
-  background: #0A0A0A;
-  color: #FFF;
-  font-family: 'Manrope', sans-serif;
-  min-height: 100vh;
-  position: relative;
-}
-.tba-lib-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 50% 10%, rgba(255,255,255,0.05), transparent 30%);
-}
-.tba-lib-shell { position: relative; z-index: 1; padding: 40px 24px; }
-.tba-lib-inner { max-width: 900px; margin: auto; display: grid; gap: 24px; }
+  /* ─── Squarespace nuclear overrides ─── */
+  html, body { margin: 0 !important; padding: 0 !important; }
+  #tba-root {
+    position: fixed !important;
+    top: 0 !important; left: 0 !important;
+    width: 100vw !important; height: 100vh !important;
+    background: #080808 !important;
+    z-index: 999999 !important;
+    overflow: auto !important;
+    scroll-behavior: smooth !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255,255,255,0.12) transparent !important;
+  }
+  #tba-root::-webkit-scrollbar { width: 3px !important; }
+  #tba-root::-webkit-scrollbar-track { background: transparent !important; }
+  #tba-root::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12) !important;
+    border-radius: 2px !important;
+  }
+  header, footer, .header, .footer-blocks,
+  [data-nc="header"], [data-nc="footer"] { display: none !important; }
+  #tba-root *, #tba-root *::before, #tba-root *::after {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  #tba-root ::selection {
+    background: rgba(255,255,255,0.14) !important;
+    color: #F5F5F5 !important;
+  }
+  /* Suppress WebKit's native × clear button on search inputs */
+  #tba-root input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none !important;
+    display: none !important;
+  }
+  /* Explicit h3 reset — card titles are h3 elements built by JS */
+  #tba-root h3 {
+    font-weight: 400 !important;
+    font-size: inherit !important;
+  }
 
-.tba-lib-kicker { font-size: 12px; letter-spacing: .2em; opacity: .6; }
-.tba-lib-title { font-size: 56px; margin: 0; }
-.tba-lib-sub { color: #aaa; }
+  /* ─── Reading progress bar ─── */
+  #tba-root .tba-read-bar {
+    position: fixed !important;
+    top: 0 !important; left: 0 !important;
+    height: 2px !important;
+    width: 0% !important;
+    background: rgba(255,255,255,0.35) !important;
+    z-index: 9999999 !important;
+    transition: width 80ms linear !important;
+    pointer-events: none !important;
+  }
 
-.tba-lib-filter { display: flex; gap: 10px; flex-wrap: wrap; }
-.tba-lib-filter-btn {
-  background: transparent;
-  border: 1px solid #333;
-  color: #fff;
-  padding: 8px 14px;
-  cursor: pointer;
-}
-.tba-lib-filter-btn.active { background: #fff; color: #000; }
+  /* ─── Base ─── */
+  #tba-root .tba-lib {
+    background: #080808 !important;
+    color: #F5F5F5 !important;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    -webkit-font-smoothing: antialiased !important;
+  }
 
-.tba-lib-grid { display: grid; gap: 14px; }
+  /* ─── Atmosphere + grain ─── */
+  #tba-root .tba-lib-atmo {
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background:
+      radial-gradient(ellipse 65% 45% at 50% 0%, rgba(255,255,255,0.032), transparent),
+      radial-gradient(ellipse 35% 55% at 85% 95%, rgba(255,255,255,0.012), transparent) !important;
+  }
+  #tba-root .tba-lib-atmo::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E") !important;
+    background-repeat: repeat !important;
+    background-size: 180px 180px !important;
+    opacity: 0.038 !important;
+    mix-blend-mode: overlay !important;
+  }
 
-.tba-lib-card {
-  border: 1px solid #222;
-  padding: 18px;
-  background: rgba(255,255,255,0.03);
-}
-.tba-lib-card-label { font-size: 11px; letter-spacing: .15em; opacity: .5; }
-.tba-lib-card-title { margin: 6px 0; font-size: 22px; }
-.tba-lib-card-text { color: #ccc; }
-.tba-lib-card-link { color: #fff; text-decoration: none; }
+  /* ─── Layout ─── */
+  #tba-root .tba-lib-shell {
+    position: relative !important;
+    z-index: 1 !important;
+    padding: 64px 24px 100px !important;
+  }
+  #tba-root .tba-lib-inner {
+    max-width: 860px !important;
+    margin: 0 auto !important;
+    display: grid !important;
+    gap: 40px !important;
+  }
 
-.tba-lib-cta { text-align: center; margin-top: 40px; }
-.tba-lib-btn {
-  background: #fff;
-  color: #000;
-  padding: 14px 20px;
-  text-decoration: none;
-  display: inline-block;
-}
+  /* ─── Header ─── */
+  #tba-root .tba-lib-header {
+    display: grid !important;
+    gap: 18px !important;
+  }
+  #tba-root .tba-lib-back {
+    color: #8A8A96 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 11px !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    transition: color 200ms !important;
+    display: inline-block !important;
+  }
+  #tba-root .tba-lib-back:hover { color: rgba(255,255,255,0.6) !important; }
+  #tba-root h1,
+  #tba-root .tba-lib-h1 {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(38px, 6vw, 68px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.04em !important;
+    font-weight: 400 !important;
+    max-width: 15ch !important;
+    color: #F5F5F5 !important;
+  }
+  #tba-root .tba-lib-lead {
+    color: #8A8A96 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: clamp(15px, 2vw, 18px) !important;
+    line-height: 1.55 !important;
+    max-width: 48ch !important;
+  }
+
+  /* ─── Entry animations ─── */
+  @keyframes tba-entry {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  #tba-root .tba-entry-1 { animation: tba-entry 0.5s ease 0.05s both !important; }
+  #tba-root .tba-entry-2 { animation: tba-entry 0.6s ease 0.16s both !important; }
+  #tba-root .tba-entry-3 { animation: tba-entry 0.6s ease 0.28s both !important; }
+  #tba-root .tba-entry-4 { animation: tba-entry 0.6s ease 0.38s both !important; }
+
+  /* ─── Controls ─── */
+  #tba-root .tba-lib-controls {
+    display: flex !important;
+    gap: 12px !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+  }
+  #tba-root .tba-lib-filters {
+    display: flex !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+  }
+  #tba-root .tba-lib-filter {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: transparent !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    color: rgba(255,255,255,0.42) !important;
+    padding: 7px 14px !important;
+    border-radius: 20px !important;
+    cursor: pointer !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    transition: border-color 200ms ease, color 200ms ease, background 200ms ease !important;
+    outline: none !important;
+  }
+  #tba-root .tba-lib-filter:hover {
+    border-color: rgba(255,255,255,0.2) !important;
+    color: rgba(255,255,255,0.7) !important;
+  }
+  #tba-root .tba-lib-filter.active {
+    background: rgba(255,255,255,0.9) !important;
+    color: #080808 !important;
+    border-color: transparent !important;
+  }
+  #tba-root .tba-lib-filter.active .tba-filter-dot {
+    display: none !important;
+  }
+  #tba-root .tba-filter-dot {
+    display: block !important;
+    width: 5px !important;
+    height: 5px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* ─── Search ─── */
+  #tba-root .tba-lib-search-wrap {
+    flex-shrink: 0 !important;
+  }
+  #tba-root .tba-lib-search {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 20px !important;
+    padding: 8px 16px !important;
+    color: #F5F5F5 !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 13px !important;
+    width: 200px !important;
+    outline: none !important;
+    transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease !important;
+  }
+  #tba-root .tba-lib-search::placeholder { color: rgba(255,255,255,0.28) !important; }
+  #tba-root .tba-lib-search:focus {
+    border-color: rgba(255,255,255,0.18) !important;
+    background: rgba(255,255,255,0.06) !important;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.04) !important;
+  }
+
+  /* ─── Body wrapper — count sits tight above the grid ─── */
+  #tba-root .tba-lib-body {
+    display: grid !important;
+    gap: 14px !important;
+  }
+
+  /* ─── Results count ─── */
+  #tba-root .tba-lib-count {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 11px !important;
+    color: rgba(255,255,255,0.28) !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+  }
+
+  /* ─── Grid ─── */
+  #tba-root .tba-lib-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    align-items: start !important;
+  }
+
+  /* ─── Cards ─── */
+  #tba-root .tba-card {
+    background: rgba(255,255,255,0.025) !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+    border-radius: 16px !important;
+    padding: 22px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    min-height: 200px !important;
+    /* Scroll-reveal initial state */
+    opacity: 0 !important;
+    transform: translateY(16px) !important;
+    transition: opacity 480ms ease, transform 480ms ease, border-color 220ms ease !important;
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+  #tba-root .tba-card:hover {
+    border-color: rgba(255,255,255,0.13) !important;
+  }
+  #tba-root .tba-card.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Featured card — full width */
+  #tba-root .tba-card--featured {
+    grid-column: 1 / -1 !important;
+    min-height: auto !important;
+    background: rgba(255,255,255,0.03) !important;
+    border-color: rgba(255,255,255,0.10) !important;
+    padding: 28px 30px !important;
+  }
+  #tba-root .tba-card--featured:hover {
+    border-color: rgba(255,255,255,0.18) !important;
+  }
+
+  /* Card internals */
+  #tba-root .tba-card-top {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    justify-content: space-between !important;
+  }
+  #tba-root .tba-card-top-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  #tba-root .tba-card-dot {
+    display: block !important;
+    width: 5px !important;
+    height: 5px !important;
+    border-radius: 50% !important;
+    flex-shrink: 0 !important;
+  }
+  #tba-root .tba-card-category {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: rgba(255,255,255,0.32) !important;
+  }
+  #tba-root .tba-card-time {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 11px !important;
+    color: rgba(255,255,255,0.22) !important;
+    margin-left: auto !important;
+    flex-shrink: 0 !important;
+  }
+  #tba-root .tba-card-title {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(20px, 2.2vw, 26px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.025em !important;
+    font-weight: 400 !important;
+    color: #F5F5F5 !important;
+  }
+  #tba-root .tba-card--featured .tba-card-title {
+    font-size: clamp(26px, 3.5vw, 40px) !important;
+    max-width: 20ch !important;
+  }
+  #tba-root .tba-card-teaser {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    color: rgba(255,255,255,0.55) !important;
+    flex: 1 !important;
+  }
+  #tba-root .tba-card--featured .tba-card-teaser {
+    font-size: 16px !important;
+    max-width: 60ch !important;
+    color: rgba(255,255,255,0.6) !important;
+  }
+  #tba-root .tba-card-link {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: rgba(255,255,255,0.55) !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    margin-top: auto !important;
+    transition: color 200ms ease !important;
+    align-self: flex-start !important;
+  }
+  #tba-root .tba-card:hover .tba-card-link {
+    color: rgba(255,255,255,0.9) !important;
+  }
+  #tba-root .tba-card--featured .tba-card-link {
+    font-size: 15px !important;
+    align-self: flex-start !important;
+    color: rgba(255,255,255,0.6) !important;
+  }
+
+  /* ─── Empty state ─── */
+  #tba-root .tba-lib-empty {
+    text-align: center !important;
+    padding: 60px 24px !important;
+  }
+  #tba-root .tba-lib-empty-title {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: 28px !important;
+    color: rgba(255,255,255,0.5) !important;
+    letter-spacing: -0.02em !important;
+  }
+  #tba-root .tba-lib-empty-sub {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 14px !important;
+    color: rgba(255,255,255,0.25) !important;
+    margin-top: 8px !important;
+  }
+
+  /* ─── CTA block ─── */
+  #tba-root .tba-lib-cta {
+    border-top: 1px solid rgba(255,255,255,0.07) !important;
+    padding-top: 48px !important;
+    display: grid !important;
+    gap: 16px !important;
+  }
+  #tba-root .tba-lib-cta-label {
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: rgba(255,255,255,0.28) !important;
+  }
+  #tba-root h2,
+  #tba-root .tba-lib-cta-h2 {
+    font-family: 'Instrument Serif', Georgia, serif !important;
+    font-size: clamp(30px, 4vw, 46px) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.03em !important;
+    font-weight: 400 !important;
+    color: #F5F5F5 !important;
+    max-width: 16ch !important;
+  }
+  #tba-root .tba-lib-cta-row {
+    display: flex !important;
+    gap: 18px !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    margin-top: 4px !important;
+  }
+
+  /* ─── Buttons ─── */
+  @keyframes tba-sweep {
+    0%, 20% { background-position: -120% center; }
+    70%, 100% { background-position: 220% center; }
+  }
+  #tba-root .tba-lib-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 52px !important;
+    padding: 14px 28px !important;
+    border-radius: 12px !important;
+    background: #F5F5F5 !important;
+    color: #080808 !important;
+    text-decoration: none !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    transition: transform 160ms ease, box-shadow 200ms ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  #tba-root .tba-lib-btn::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%) !important;
+    background-size: 200% 100% !important;
+    background-position: -120% center !important;
+    animation: tba-sweep 4.5s ease-in-out 1.5s infinite !important;
+    border-radius: 12px !important;
+  }
+  #tba-root .tba-lib-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(245,245,245,0.14) !important;
+  }
+  #tba-root .tba-lib-link {
+    color: #F5F5F5 !important;
+    text-decoration: none !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    opacity: 0.6 !important;
+    transition: opacity 200ms !important;
+  }
+  #tba-root .tba-lib-link:hover { opacity: 1 !important; }
+
+  /* ─── Mobile ─── */
+  @media (max-width: 640px) {
+    #tba-root .tba-lib-shell { padding: 44px 18px 72px !important; }
+    #tba-root .tba-lib-inner { gap: 32px !important; }
+    #tba-root .tba-lib-grid { grid-template-columns: 1fr !important; }
+    #tba-root .tba-lib-controls { flex-direction: column !important; align-items: stretch !important; }
+    #tba-root .tba-lib-search-wrap { width: 100% !important; }
+    #tba-root .tba-lib-search { width: 100% !important; }
+    #tba-root .tba-lib-cta-row { flex-direction: column !important; align-items: stretch !important; }
+    #tba-root .tba-lib-btn { width: 100% !important; text-align: center !important; }
+    #tba-root .tba-lib-link { text-align: center !important; }
+    #tba-root .tba-card--featured { padding: 20px !important; }
+  }
 </style>
 
 <script>
-const buttons = document.querySelectorAll('.tba-lib-filter-btn');
-const cards = document.querySelectorAll('.tba-lib-card');
+(function() {
+  'use strict';
 
-buttons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    buttons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+  /* ═══════════════════════════════════════════════════════
+     POSTS — ADD YOUR CONTENT HERE
+     Copy any object below, paste it into the array,
+     update the fields, save. Done.
 
-    const filter = btn.dataset.filter;
+     ⚠️ IMPORTANT: The three sample posts below all have
+        url: '#' as a placeholder. Before publishing, either:
+        (a) Replace each '#' with a real PDF link, OR
+        (b) Delete the sample posts entirely so the library
+            starts empty and you can add real posts over time.
+     ═══════════════════════════════════════════════════════ */
+  var POSTS = [
 
-    cards.forEach(card => {
-      if (filter === 'all' || card.dataset.category === filter) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
+    {
+      title: 'Breaking Self-Destructive Patterns',
+      category: 'pain',
+      teaser: 'You don\'t repeat patterns because you\'re weak. You repeat them because they still solve something faster than you can consciously intervene. That\'s the part no one explains.',
+      url: '#',           // ← Paste your PDF link here
+      readTime: '8 min',
+      featured: true,
+      date: '2025-04'
+    },
+
+    {
+      title: 'Why You Don\'t Feel Like Yourself',
+      category: 'identity',
+      teaser: 'You\'re not lost. You\'re switching between versions of yourself that were each built for different environments. The confusion is the output of a working system.',
+      url: '#',           // ← Paste your PDF link here
+      readTime: '6 min',
+      featured: false,
+      date: '2025-03'
+    },
+
+    {
+      title: 'Why Your Brain Won\'t Let Go',
+      category: 'trauma',
+      teaser: 'Unresolved loops aren\'t emotional memories. They\'re neurological systems still waiting for a signal that the threat has passed. Understanding the mechanism changes what becomes possible.',
+      url: '#',           // ← Paste your PDF link here
+      readTime: '10 min',
+      featured: false,
+      date: '2025-02'
+    }
+
+    /* ── PASTE NEW POSTS ABOVE THIS LINE ──────────────────
+    ,
+    {
+      title: 'Your Post Title Here',
+      category: 'pain',     // 'pain' | 'identity' | 'trauma' | 'systems'
+      teaser: 'One or two sentences. What will the reader understand after reading this?',
+      url: 'https://drive.google.com/file/d/YOUR_FILE_ID/view',
+      readTime: '7 min',    // optional — remove the line if unknown
+      featured: false,
+      date: '2025-05'       // YYYY-MM — newer = sorts higher
+    }
+    ─────────────────────────────────────────────────────── */
+  ];
+
+  /* ─── Category metadata ─── */
+  var CAT = {
+    pain:     { label: 'PAIN',     color: 'rgba(200,120,55,0.85)'  },
+    identity: { label: 'IDENTITY', color: 'rgba(100,135,215,0.85)' },
+    trauma:   { label: 'TRAUMA',   color: 'rgba(175,80,85,0.85)'   },
+    systems:  { label: 'SYSTEMS',  color: 'rgba(90,160,120,0.85)'  }
+  };
+
+  /* ─── State ─── */
+  var activeFilter = 'all';
+  var grid    = document.getElementById('tbaGrid');
+  var empty   = document.getElementById('tbaEmpty');
+  var countEl = document.getElementById('tbaCount');
+  var searchEl = document.getElementById('tbaSearch');
+
+  /* ─── Reading progress bar ─── */
+  var bar  = document.getElementById('tbaReadBar');
+  var root = document.getElementById('tba-root');
+  if (bar && root) {
+    root.addEventListener('scroll', function() {
+      var total = root.scrollHeight - root.clientHeight;
+      bar.style.width = (total > 0 ? Math.min(100, Math.round((root.scrollTop / total) * 100)) : 0) + '%';
+    }, { passive: true });
+  }
+
+  /* ─── Helpers ─── */
+  function escHtml(str) {
+    var d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  /* ─── Card builders ─── */
+  function buildCard(post, isFeatured) {
+    var meta = CAT[post.category] || CAT.pain;
+    var el = document.createElement('article');
+    el.className = 'tba-card tba-reveal' + (isFeatured ? ' tba-card--featured' : '');
+    el.dataset.category = post.category;
+
+    var timeHtml = post.readTime
+      ? '<span class="tba-card-time">' + escHtml(post.readTime) + '</span>'
+      : '';
+
+    var linkText = isFeatured ? 'Read the full piece \u2192' : 'Read \u2192';
+
+    el.innerHTML =
+      '<div class="tba-card-top">' +
+        '<div class="tba-card-top-left">' +
+          '<span class="tba-card-dot" style="background:' + meta.color + '"></span>' +
+          '<span class="tba-card-category">' +
+            (isFeatured ? 'FEATURED &middot; ' : '') + meta.label +
+          '</span>' +
+        '</div>' +
+        timeHtml +
+      '</div>' +
+      '<h3 class="tba-card-title">' + escHtml(post.title) + '</h3>' +
+      '<p class="tba-card-teaser">' + escHtml(post.teaser) + '</p>' +
+      '<a href="' + escHtml(post.url) + '" class="tba-card-link" target="_blank" rel="noopener noreferrer">' +
+        linkText +
+      '</a>';
+
+    return el;
+  }
+
+  /* ─── Scroll reveal (re-applied after each render) ─── */
+  function attachReveal() {
+    var cards = grid.querySelectorAll('.tba-reveal');
+    if (!window.IntersectionObserver) {
+      for (var j = 0; j < cards.length; j++) {
+        cards[j].style.opacity = '1';
+        cards[j].style.transform = 'none';
       }
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {
+      root: root,
+      threshold: 0.06,
+      rootMargin: '0px 0px -20px 0px'
     });
-  });
-});
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].style.transitionDelay = Math.min(i, 5) * 60 + 'ms';
+      io.observe(cards[i]);
+    }
+  }
+
+  /* ─── Main render ─── */
+  function render() {
+    var query = searchEl ? searchEl.value.trim().toLowerCase() : '';
+
+    var filtered = POSTS.filter(function(p) {
+      var catOk = activeFilter === 'all' || p.category === activeFilter;
+      var qOk = !query ||
+        p.title.toLowerCase().indexOf(query) !== -1 ||
+        p.teaser.toLowerCase().indexOf(query) !== -1;
+      return catOk && qOk;
+    });
+
+    /* Sort: featured first, then newest */
+    filtered.sort(function(a, b) {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      var da = a.date || '';
+      var db = b.date || '';
+      return db.localeCompare(da);
+    });
+
+    /* Update count */
+    if (countEl) {
+      countEl.textContent = filtered.length
+        ? filtered.length + (filtered.length === 1 ? ' PIECE' : ' PIECES')
+        : '';
+    }
+
+    /* Clear grid */
+    grid.innerHTML = '';
+
+    if (filtered.length === 0) {
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    /* Render featured (first post with featured:true, if any) */
+    var featuredIdx = -1;
+    for (var f = 0; f < filtered.length; f++) {
+      if (filtered[f].featured) { featuredIdx = f; break; }
+    }
+
+    if (featuredIdx !== -1) {
+      grid.appendChild(buildCard(filtered[featuredIdx], true));
+    }
+
+    for (var i = 0; i < filtered.length; i++) {
+      if (i !== featuredIdx) {
+        grid.appendChild(buildCard(filtered[i], false));
+      }
+    }
+
+    attachReveal();
+  }
+
+  /* ─── Filter buttons ─── */
+  var filterBtns = document.querySelectorAll('#tbaFilters .tba-lib-filter');
+  for (var b = 0; b < filterBtns.length; b++) {
+    filterBtns[b].addEventListener('click', function() {
+      for (var k = 0; k < filterBtns.length; k++) {
+        filterBtns[k].classList.remove('active');
+      }
+      this.classList.add('active');
+      activeFilter = this.dataset.filter;
+      render();
+      if (root) root.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ─── Search ─── */
+  if (searchEl) {
+    searchEl.addEventListener('input', function() { render(); });
+    searchEl.addEventListener('search', function() { render(); }); // clear button on mobile
+  }
+
+  /* ─── URL parameter pre-filter (?category=pain etc.) ─── */
+  (function() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var cat = params.get('category') || params.get('filter');
+      if (cat) {
+        var match = null;
+        for (var i = 0; i < filterBtns.length; i++) {
+          if (filterBtns[i].dataset.filter === cat.toLowerCase()) {
+            match = filterBtns[i];
+            break;
+          }
+        }
+        if (match) {
+          for (var j = 0; j < filterBtns.length; j++) filterBtns[j].classList.remove('active');
+          match.classList.add('active');
+          activeFilter = cat.toLowerCase();
+        }
+      }
+    } catch(e) { /* URLSearchParams not supported — use default */ }
+  })();
+
+  /* ─── Initial render ─── */
+  render();
+
+})();
 </script>
 </div>
