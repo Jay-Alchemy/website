@@ -53,6 +53,10 @@
         <a class="tba-deep-link" href="/">Start from the beginning <span aria-hidden="true">&rarr;</span></a>
       </div>
 
+      <p class="tba-deep-lib-hint">
+        <a href="/library?category=identity">More on identity in the library &rarr;</a>
+      </p>
+
     </div>
   </div>
 </section>
@@ -257,6 +261,23 @@
     transition: opacity 200ms !important;
   }
   #tba-root .tba-deep-link:hover { opacity: 1 !important; }
+
+  /* ─── Library hint link ─── */
+  #tba-root .tba-deep-lib-hint {
+    display: block !important;
+    margin-top: -8px !important;
+  }
+  #tba-root .tba-deep-lib-hint a {
+    color: rgba(255,255,255,0.18) !important;
+    font-family: 'DM Sans', system-ui, sans-serif !important;
+    font-size: 12px !important;
+    letter-spacing: 0.04em !important;
+    text-decoration: none !important;
+    transition: color 220ms ease !important;
+  }
+  #tba-root .tba-deep-lib-hint a:hover {
+    color: rgba(255,255,255,0.42) !important;
+  }
 
   /* ─── Mobile ─── */
   @media (max-width: 640px) {
