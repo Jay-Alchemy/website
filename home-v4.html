@@ -35,7 +35,7 @@
         </div>
 
         <div class="tba-quiet">
-          <a href="/about">I need more context first</a>
+          <a href="/library">I need more context first</a>
         </div>
       </div>
     </section>
@@ -91,7 +91,10 @@
             <input type="text" id="tbaHoneypot2" name="company" tabindex="-1" autocomplete="off">
           </div>
 
-          <p class="tba-consent">You'll receive a short email series. Unsubscribe anytime. <a href="/privacy" class="tba-consent-link">Privacy policy</a></p>
+          <!-- To re-add a privacy policy link, replace the line below with:
+               <p class="tba-consent">You'll receive a short email series. Unsubscribe anytime. <a href="/privacy" class="tba-consent-link">Privacy policy</a></p>
+          -->
+          <p class="tba-consent">You'll receive a short email series. Unsubscribe anytime.</p>
 
           <div class="tba-form-row">
             <p id="tbaCaptureStatus" class="tba-status"></p>
@@ -679,7 +682,7 @@ window.TBA = (function() {
   'use strict';
 
   var CONFIG = {
-    proxyUrl: 'Enter url here',
+    proxyUrl: 'https://green-moon-5e4a.jay-4b6.workers.dev/',
     nexusUrl: '/nexus',
     deepRoutes: { pain: '/pain', identity: '/identity' },
     videoEmbed: { pain: '', identity: '' },
@@ -688,7 +691,7 @@ window.TBA = (function() {
 
   var COPY = {
     reframe: {
-      pain: "You are not failing. You are in the maze that trauma sets you. Let's find your way out.",
+      pain: "You are not failing. You are in the maze that trauma set before you. Let's find your way out.",
       identity: "You are not lost. You are running multiple scenarios in your head at once. Let's find YOU again."
     },
     interpretation: {
@@ -804,11 +807,15 @@ window.TBA = (function() {
   }
 
   function sendLead(payload) {
-    if (!CONFIG.proxyUrl || CONFIG.proxyUrl.indexOf('YOUR_PROXY') !== -1) {
+    /* Dev-mode: if proxyUrl isn't a valid-looking URL, skip the network call
+       and just advance the funnel. This prevents TypeErrors when the URL
+       is left as a placeholder. */
+    var url = CONFIG.proxyUrl || '';
+    if (!url || url.indexOf('YOUR_PROXY') !== -1 || url.indexOf('Enter url') !== -1 || !/^https?:\/\//i.test(url)) {
       console.warn('[TBA] Proxy URL not configured. Lead not sent. Advancing funnel for testing.');
       return Promise.resolve();
     }
-    return fetch(CONFIG.proxyUrl, {
+    return fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -903,7 +910,7 @@ window.TBA = (function() {
         path: state.path,
         response: sanitize(state.response),
         timestamp: new Date().toISOString(),
-        source: 'tba-home-v4'
+        source: 'tba-home-v5'
       };
       sendLead(payload).then(function() {
         trackEvent('lead_captured', { path: state.path });
