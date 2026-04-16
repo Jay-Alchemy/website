@@ -1,0 +1,307 @@
+╔══════════════════════════════════════════════════════════════════╗
+║         THE BROKEN ALCHEMIST — IMPLEMENTATION GUIDE              ║
+║         4-Page Squarespace Funnel System                         ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Last updated: April 2026
+Files: home.html | identity.html | pain.html | Library.html
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 1 — HOW SQUARESPACE CODE INJECTION WORKS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Each HTML file is pasted into a "Code Block" on a blank Squarespace
+page. The code takes over the entire viewport, hiding Squarespace's
+own header and footer, so the page looks and behaves like a fully
+custom site.
+
+Each file is self-contained — it includes its own fonts, styles,
+and JavaScript. Nothing else needs to be installed.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 2 — PAGE SETUP IN SQUARESPACE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+You need 4 pages. Create them with these exact URL slugs:
+
+  Page             File             Squarespace URL Slug
+  ─────────────────────────────────────────────────────────
+  Home funnel      home.html        /  (set as homepage)
+  Identity         identity.html    /identity
+  Pain             pain.html        /pain
+  Library          Library.html     /library
+
+  You will also need a page at:
+  /nexus           (your existing Nexus page — no change needed)
+
+HOW TO ADD THE CODE TO EACH PAGE:
+
+  1. In Squarespace, go to Pages → click the page (or create it)
+  2. Click Edit on the page
+  3. Add a new block → choose "Code"
+  4. Paste the entire contents of the HTML file into the block
+  5. Make sure "Display Source" is OFF
+  6. Save and publish
+
+  Repeat for all 4 pages.
+
+IMPORTANT — PAGE SETTINGS:
+  - Set the page type to "Blank" or use a template with no content
+    sections so the code block fills the whole page.
+  - Disable the page from showing in your navigation if you don't
+    want it in the nav menu. The funnel handles all internal linking.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 3 — EMAIL CAPTURE PIPELINE (ALREADY CONFIGURED)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your existing pipeline is:
+
+  Website form
+      ↓
+  Cloudflare Worker (proxy — hides your Make.com URL, rate-limits,
+                     validates email)
+      ↓
+  Make.com scenario (routes by path, adds Kit.com tag)
+      ↓
+  Kit.com (tags: path:pain or path:identity → triggers email sequence)
+
+THE HOME PAGE IS PRE-CONFIGURED WITH YOUR CLOUDFLARE WORKER URL:
+
+  var CONFIG = {
+    proxyUrl: 'https://green-moon-5e4a.jay-4b6.workers.dev/',
+    ...
+  };
+
+If you ever change your Cloudflare Worker URL, update line ~682
+of home.html.
+
+PAYLOAD SENT ON EACH SUBMISSION:
+  {
+    email:     "user@example.com",
+    path:      "pain" or "identity",
+    response:  "what the user typed in the textarea",
+    timestamp: "2026-04-16T...",
+    source:    "tba-home-v5"
+  }
+
+MAKE.COM SCENARIO — KEEP ACTIVE:
+  The scenario must be toggled ON in Make.com, not just set to
+  "Run once." If submissions stop flowing, check this first.
+
+KIT.COM — SUBSCRIBER STATE:
+  Your Make.com → Kit.com module is configured to set new
+  subscribers to state: "active" so they skip double opt-in.
+  If new subscribers start showing up as "unconfirmed" again,
+  check the state field in the Kit module.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 4 — ADDING BLOG POSTS TO THE LIBRARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The Library page is driven by a POSTS array in the JavaScript.
+Adding a new post takes about 2 minutes.
+
+⚠️ BEFORE PUBLISHING LIBRARY.HTML:
+  The three sample posts in the file all have url: '#' as a
+  placeholder. Either replace each with a real PDF link, or
+  delete the sample posts so the library starts empty.
+
+STEP 1 — HOST YOUR PDF
+  Option A (Squarespace):
+    Settings → Advanced → File Storage → Upload your PDF
+    Copy the resulting URL
+
+  Option B (Google Drive):
+    Upload PDF → Right-click → Share → "Anyone with the link"
+    → Copy link. Use as-is (opens in Google Drive viewer).
+
+  Option C (Dropbox, any file host):
+    Any publicly accessible URL works
+
+STEP 2 — OPEN Library.html AND FIND THE POSTS ARRAY
+  It starts with:   var POSTS = [
+  It ends with:     ];
+
+STEP 3 — COPY THIS TEMPLATE AND PASTE IT BEFORE THE CLOSING ];
+
+  ,
+  {
+    title:    'Your Post Title Here',
+    category: 'pain',
+    teaser:   'One or two sentences describing the piece.',
+    url:      'https://your-pdf-link-here.com',
+    readTime: '7 min',
+    featured: false,
+    date:     '2026-05'
+  }
+
+STEP 4 — UPDATE THE FIELDS:
+  title     — The post headline
+  category  — Must be one of: 'pain' | 'identity' | 'trauma' | 'systems'
+  teaser    — 1–2 sentences shown on the card
+  url       — Your PDF link from Step 1
+  readTime  — Estimated read time (optional — delete the line if unknown)
+  featured  — Set to true for ONE post to make it the hero card.
+              All others should be false.
+  date      — Format YYYY-MM. Newer dates sort higher in the grid.
+
+STEP 5 — SAVE AND RE-PASTE INTO SQUARESPACE
+  The post appears immediately. Filtering and search update
+  automatically — no other changes needed.
+
+CATEGORY GUIDE:
+  pain      → Pattern repetition, behavioral loops, self-sabotage
+  identity  → Fragmentation, false self, identity confusion
+  trauma    → Nervous system, unresolved loops, body-based work
+  systems   → Structural thinking, mechanics, frameworks
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 5 — ADDING VIDEO TO THE HOME FUNNEL VALUE STEP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+After a user submits their email, the final "value" step can show
+either text panels (default) or an embedded video per path.
+
+To add a video, find this block in home.html:
+
+  videoEmbed: { pain: '', identity: '' },
+
+Replace the empty strings with YouTube or Vimeo embed URLs:
+
+  videoEmbed: {
+    pain:     'https://www.youtube.com/embed/YOUR_VIDEO_ID',
+    identity: 'https://www.youtube.com/embed/YOUR_VIDEO_ID'
+  },
+
+If the strings are empty, the text panels show instead.
+You can set one path to a video and leave the other as text.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 6 — TUNING THE REFRAME MOMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The reframe step is the brief pause between the textarea and the
+email capture. It types out one sentence per path.
+
+TO CHANGE THE TEXT — find the COPY object near line 690:
+
+  reframe: {
+    pain: "Your pain message here",
+    identity: "Your identity message here"
+  },
+
+TO CHANGE HOW LONG IT STAYS ON SCREEN — line ~686:
+
+  reframeDuration: 4400    // milliseconds (4.4 seconds)
+
+Minimum workable value is about 3500ms so the typewriter has time
+to finish. Longer values give the message more room to land.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 7 — HOW THE PAGES LINK TOGETHER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  home.html
+    │
+    ├─ "I don't know who I am"        ──→  /identity
+    │     └─ "More on identity"       ──→  /library?category=identity
+    │
+    ├─ "I keep doing the thing"       ──→  /pain
+    │     └─ "More on pattern..."     ──→  /library?category=pain
+    │
+    ├─ "I need more context first"    ──→  /library
+    │
+    └─ All paths (after email capture) ──→ /nexus
+
+  Library.html
+    └─ "Enter Nexus" CTA              ──→  /nexus
+
+  The Library also accepts URL parameters for pre-filtering:
+    /library?category=pain
+    /library?category=identity
+    /library?category=trauma
+    /library?category=systems
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 8 — ANALYTICS (OPTIONAL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The home funnel fires Google Tag Manager events automatically
+if GTM is installed on your Squarespace site.
+
+Events fired:
+  tba_step_view         — When user views each funnel step
+  tba_path_selected     — When user clicks Identity or Pain
+  tba_engage_submitted  — When user submits their response
+  tba_lead_captured     — When email is successfully submitted
+
+To install GTM on Squarespace:
+  Settings → Advanced → Code Injection → paste GTM snippet
+  into the Header field.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 9 — TESTING CHECKLIST BEFORE GOING LIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Home funnel:
+  [ ] Landing page loads, both path buttons visible
+  [ ] Clicking "I don't know who I am" advances to Step 1
+  [ ] Clicking "I keep doing the thing" advances to Step 1
+  [ ] Textarea counter counts up, Continue button enables
+  [ ] Reframe text types out character by character
+  [ ] Email capture step appears after reframe
+  [ ] Invalid email shows error message
+  [ ] Valid email shows "Locked in." and advances to value step
+  [ ] Value step shows correct copy for selected path
+  [ ] "You said..." echo displays the user's original input
+  [ ] "Enter Nexus" CTA links to /nexus
+  [ ] "I need more context first" links to /library
+
+Identity page:
+  [ ] Page loads with staggered entry animations
+  [ ] Cards reveal on scroll
+  [ ] Bridge card has amber tint
+  [ ] "Enter Nexus" links to /nexus
+  [ ] "More on identity in the library" links to /library?category=identity
+
+Pain page:
+  [ ] Same checks as Identity page
+  [ ] "More on pattern repetition..." links to /library?category=pain
+
+Library page:
+  [ ] All posts render (or empty state if you removed samples)
+  [ ] Featured post spans full width
+  [ ] Filter buttons work (Pain, Identity, Trauma, Systems)
+  [ ] Search filters cards in real-time
+  [ ] Empty state message shows when no results
+  [ ] "Enter Nexus" CTA at bottom links to /nexus
+  [ ] Reading progress bar appears on scroll
+  [ ] Visiting /library?category=pain pre-selects Pain filter
+
+End-to-end email capture:
+  [ ] Submit a test email
+  [ ] Confirm it appears in Make.com scenario history
+  [ ] Confirm subscriber appears in Kit.com with correct tag
+  [ ] Confirm first email in sequence fires correctly
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 10 — FILE REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  home.html         →  Paste on your homepage ( / )
+  identity.html     →  Paste on page with slug /identity
+  pain.html         →  Paste on page with slug /pain
+  Library.html      →  Paste on page with slug /library
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
