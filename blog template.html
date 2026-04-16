@@ -1,0 +1,175 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+.nexus-wrap * { margin:0; padding:0; box-sizing:border-box; }
+
+.nexus-wrap {
+  background:#1B1F26;
+  color:#E8EAED;
+  font-family:'Manrope',sans-serif;
+  width:100%;
+}
+
+.nexus-inner {
+  padding:40px 20px 40px;
+}
+
+.nexus-container {
+  max-width:800px;
+  margin:0 auto;
+}
+
+/* LOGO */
+.nexus-logo {
+  text-align:center;
+  margin-bottom:40px;
+  padding-bottom:10px;
+  border-bottom:1px solid #2E3440;
+}
+
+.nexus-logo-img {
+  max-width:580px;
+  width:100%;
+  height:auto;
+  display:inline-block;
+  opacity:0.95;
+}
+
+/* TYPOGRAPHY */
+.nexus-container h1 {
+  font-size:2.2em;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#E8EAED;
+  margin-bottom:8px;
+}
+
+.nexus-container h2 {
+  font-size:1.5em;
+  font-weight:700;
+  color:#D6B86E;
+  margin:32px 0 12px;
+  letter-spacing:0.02em;
+}
+
+.nexus-container h3 {
+  font-size:1.15em;
+  font-weight:600;
+  color:#E8EAED;
+  margin:24px 0 8px;
+}
+
+.nexus-container p {
+  margin-bottom:16px;
+  color:#8C99A6;
+  line-height:1.7;
+}
+
+.nexus-container strong { color:#E8EAED; }
+
+.nexus-container em {
+  color:#D6B86E;
+  font-style:italic;
+}
+
+.nexus-container ul,
+.nexus-container ol {
+  margin:12px 0 16px 24px;
+  color:#8C99A6;
+}
+
+.nexus-container li {
+  margin-bottom:6px;
+  line-height:1.7;
+}
+
+.nexus-container blockquote {
+  border-left:3px solid #D6B86E;
+  padding:12px 20px;
+  margin:20px 0;
+  background:#232830;
+  border-radius:0 8px 8px 0;
+}
+
+.nexus-container blockquote p {
+  color:#E8EAED;
+  margin:0;
+}
+
+.nexus-container table {
+  width:100%;
+  border-collapse:collapse;
+  margin:20px 0;
+}
+
+.nexus-container th {
+  background:#2F4E7A;
+  color:#E8EAED;
+  padding:10px 14px;
+  text-align:left;
+  font-weight:600;
+}
+
+.nexus-container td {
+  padding:10px 14px;
+  border-bottom:1px solid #2E3440;
+  color:#8C99A6;
+}
+</style>
+
+<div class="nexus-wrap">
+  <div class="nexus-inner">
+    <div class="nexus-container">
+
+      <!-- LOGO -->
+      <div class="nexus-logo">
+        <img src="{{logo_url}}" alt="{{brand_name}} Logo" class="nexus-logo-img">
+      </div>
+
+      <article>
+
+        <!-- TITLE -->
+        <h1>{{post_title}}</h1>
+
+        <!-- SUBTITLE -->
+        <h2>{{post_subtitle}}</h2>
+
+        <!-- INTRO -->
+        {{intro_paragraphs}}
+
+        <!-- MAIN CONTENT -->
+        {{content_blocks}}
+
+        <!-- QUOTE (optional reusable block) -->
+        {{blockquote}}
+
+        <!-- SECTION EXAMPLE -->
+        <h2>{{section_title}}</h2>
+        {{section_content}}
+
+        <!-- LIST EXAMPLE -->
+        <ul>
+          {{list_items}}
+        </ul>
+
+        <!-- TABLE EXAMPLE -->
+        <table>
+          <thead>
+            <tr>
+              {{table_headers}}
+            </tr>
+          </thead>
+          <tbody>
+            {{table_rows}}
+          </tbody>
+        </table>
+
+        <!-- CTA -->
+        <h2>{{cta_title}}</h2>
+        {{cta_content}}
+
+      </article>
+
+    </div>
+  </div>
+</div>
